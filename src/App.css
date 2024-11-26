@@ -218,7 +218,6 @@
 /*{ errors }*/
 .error { 
     font-style: italic;
-    font-weight: bold;
     color: rgb(244, 73, 73); 
     font-size: 13px;
     margin: 5px 0 10px; 
@@ -227,6 +226,7 @@
 /*{ Password Validation }*/
 .password-validation {
     font-size: 14px;
+    margin: 20px 0;
 }
 
 .password-validation p{
@@ -293,6 +293,8 @@
     border: 0; 
     background-color: transparent;
     width: auto;
+    height: auto;
+    font-size: 12px;
 }
 
 .global-button.return-btn .icon { margin: 0; }
@@ -301,7 +303,7 @@
     display: flex; 
     flex-direction: column;
     gap: 20px;
-    width: 60%;
+    width: 70%;
     height: 100%;
 }
 
@@ -371,13 +373,16 @@
 }
 
 .global-button.social-media-btn {
-    align-self: center;
+    justify-self: center;
     background-color: #5633d1;
     color: #fff; 
     font-size:20px;
-    height: auto;
-    width: 10%;
+    height: 2vw;
+    width: 2vw;
     border-radius: 50%;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
 }
 
 .global-button.social-media-btn .icon { margin: 0; font-size: 16px;}
@@ -398,8 +403,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px; 
-    height: 44%;
+    height: 35%;
 }
 
 .step {
@@ -412,7 +416,7 @@
     position: absolute;
     top: 60%;
     left: 40%;
-    height: 78px;  
+    height: 65px;  
     width: 4px;    
     z-index: -1000; 
 }
@@ -432,7 +436,11 @@
     height: 100%;
 }
 
-.forgot-password { text-align: end; }
+.forgot-password { 
+    text-align: end; 
+    margin: 10px 0; 
+}
+
 .forgot-password a { 
     cursor: pointer;
     text-decoration: none;
@@ -581,6 +589,12 @@
     padding: 20px;  
 }
 
+.forgot-password-form .container-form-data {
+    display: flex; 
+    flex-direction: column;
+    gap: 10px; 
+}
+
 .return .reset-password {
     background-color: transparent;
     border: 0; 
@@ -590,8 +604,8 @@
 }
 
 /*{ signup, login. resetPassword }*/
-.container-form-data { text-align: center; }
-.container-form-data h2 { font-size: 2rem; margin-bottom: 20px; } 
+.container-form-data { text-align: center; gap: 20px; }
+.container-form-data h2 { font-size: 2rem; margin-bottom: 10px; } 
 
 .return { 
     text-align: center;
@@ -656,4 +670,58 @@ body.dark-mode .change-password-container.change .change-password-form .change-p
 
 body.dark-mode .global-button.change-password-btn {
     background-color: #ffffff;
+}
+
+/*{ more tools }*/
+body.dark-mode .global-input, body.dark-mode .password-toggle-input, body.dark-mode .global-button { border: 1px solid #ff5f81; }
+
+
+/*{ Signuo, login }*/
+body.dark-mode .auth-img { background-color: #ffffff; }
+body.dark-mode .return-btn { 
+    color: #ffffff; 
+    bordeR: 0; 
+}
+
+body.dark-mode .authenticate-btn { background-color: #ff5f81; }
+body.dark-mode .return a { color: #ff5f81; }
+
+/*{ signup  }*/
+body.dark-mode .social-media-btn { background-color: #ff5f81; }
+
+/*{ login }*/
+body.dark-mode .forgot-password a { color: #ff5f81; }
+
+/*{ forgot password }*/
+body.dark-mode .reset-password { 
+    color: #ffffff; 
+    border: 0;
+}
+
+/* {nabvar} */
+body.dark-mode .navbar .navbar-icon, body.dark-mode .submenu .navbar-icon { border: 0; }
+body.dark-mode .navbar .navbar-icon:hover, body.dark-mode .submenu .navbar-icon:hover {
+    background-color: #ff5f81;
+}
+body.dark-mode .navbar .navbar-icon.menu:hover, body.dark-mode .submenu .navbar-icon.menu:hover { background-color: transparent; }
+body.dark-mode .navbar.icons-only, body.dark-mode .submenu.icons-only {
+    border-right: 1px solid #ff5f81;
+    border-top: 1px solid #ff5f81;
+}
+/* Media query para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .global-button.social-media-btn {
+        width: 5vw;   /* Ancho mayor en pantallas pequeñas */
+        height: 5vw;  /* Altura mayor en pantallas pequeñas */
+        font-size: 18px;  /* Reducir el tamaño de fuente */
+    }
+}
+
+/* Media query para pantallas extra pequeñas */
+@media (max-width: 480px) {
+    .global-button.social-media-btn {
+        width: 20vw;  /* Aumentar tamaño del botón en pantallas muy pequeñas */
+        height: 20vw;
+        font-size: 16px;  /* Reducir aún más el tamaño de fuente */
+    }
 }

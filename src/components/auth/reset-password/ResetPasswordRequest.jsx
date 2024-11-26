@@ -40,7 +40,7 @@ export const ResetPasswordRequest = ({ setStep, setErrors, setEmail }) => {
                         value={emailInput}  
                         onChange={(e) => setEmailInput(e.target.value)}
                         required
-                        autoComplete="email"
+                        autoComplete="off"
                         label="Email"
                     />
                     <Button
