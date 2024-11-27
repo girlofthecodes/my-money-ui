@@ -18,7 +18,7 @@ export const signup = async ({ username, email, password }) => {
 };
 
 
-export const login = async({ email, password }) => {
+export const login = async ({ email, password }) => {
     const response = await fetch('http://127.0.0.1:8000/auth/login/', {
         method: 'POST',
         headers: {

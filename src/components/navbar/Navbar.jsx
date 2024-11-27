@@ -191,6 +191,7 @@ export const Menu = () => {
                         className="navbar-icon"
                         icon={faCreditCard} 
                         label={isIconsOnly ? "" :"Accounts"}
+                        path="/account"
                     />
                 </li>
                 <li className="item">
