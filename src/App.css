@@ -828,6 +828,8 @@
     font-weight: bold;
 }
 
+.your-cards { border-bottom: 1px solid #ceb8fa;}
+
 /*{ register {form > account ]}*/
 .register-container {
     padding: 20px; 
@@ -838,9 +840,6 @@
 }
 
 .list .register { flex: 1; }
-.register {
-    
-}
 /*{ Dark Mode }*/ q
 body.dark-mode {
     background-color: #1f1f1f;

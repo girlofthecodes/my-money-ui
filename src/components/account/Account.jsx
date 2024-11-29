@@ -89,33 +89,37 @@ export const MainAccount = () => {
                 <h1>Hola</h1>
             </div>
             <div className="container-main cards">
-                <div className="all-cards">
-                    <div className="count-cards">
-                        <h2>Your cards</h2>
-                        <p className="total-card">{accounts.length}</p>
-                    </div>
-                    <div className="navigation-btn">
-                        <IoIosArrowDropleftCircle className="db-icon" onClick={goPrev} />
-                        <IoIosArrowDroprightCircle className="db-icon" onClick={goNext} />
-                    </div>
-                </div>
-                <div className="card-container">
-                    {accounts.map((account, index) => (
-                        <div
-                            key={account.id}
-                            className={`card-wrapper ${index === currentIndex ? "visible" : "hidden"}`}
-                        >
-                            <Card
-                                accountNumber={account.accountNumber}
-                                accountType={account.accountType}
-                                className={index === currentIndex ? "visible-card" : "hidden-card"}
-                            />
+                <div className="your-cards">
+                    <div className="all-cards">
+                        <div className="count-cards">
+                            <h2>Your cards</h2>
+                            <p className="total-card">{accounts.length}</p>
                         </div>
-                    ))}
+                        <div className="navigation-btn">
+                            <IoIosArrowDropleftCircle className="db-icon" onClick={goPrev} />
+                            <IoIosArrowDroprightCircle className="db-icon" onClick={goNext} />
+                        </div>
+                    </div>
+                    <div className="card-container">
+                        {accounts.map((account, index) => (
+                            <div
+                                key={account.id}
+                                className={`card-wrapper ${index === currentIndex ? "visible" : "hidden"}`}
+                            >
+                                <Card
+                                    accountNumber={account.accountNumber}
+                                    accountType={account.accountType}
+                                    className={index === currentIndex ? "visible-card" : "hidden-card"}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                    <div className="new-card-btn">
+                        <Button className="new-card" label="Add New Card" path="/account/register"/>
+                    </div>
                 </div>
+                <div>
 
-                <div className="new-card-btn">
-                    <Button className="new-card" label="Add New Card" path="/account/register"/>
                 </div>
             </div>
         </main>
