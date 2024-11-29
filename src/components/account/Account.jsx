@@ -3,12 +3,15 @@ import { useState, useEffect } from 'react';
 
 import { Card } from './common/Card';
 import { listAccounts } from '../../api/account';
+import { listIncomes } from '../../api/incomes';
 import { Button } from '../common/Button';
+import { DoughnutGrafic } from '../common/Doughnut';
+import { CircularChart } from '../common/CircularChart';
 
-import { IoSwapHorizontalOutline, IoAnalyticsSharp , IoMailUnread, IoWallet, IoApps, IoSettings, IoNotifications, IoPersonCircleSharp , IoChevronDownOutline } from "react-icons/io5";
-import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle  } from "react-icons/io";
+import { IoSwapHorizontalOutline, IoAnalyticsSharp , IoMailUnread, IoWallet, IoApps, 
+    IoSettings, IoNotifications, IoPersonCircleSharp , IoChevronDownOutline, IoChevronForwardOutline, IoArrowUpCircleOutline  } from "react-icons/io5";
+import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from "react-icons/io";
 
-import { faPlus} from '@fortawesome/free-solid-svg-icons';
 
 const HeaderAccount = () => {
     return (
@@ -59,14 +62,37 @@ const HeaderAccount = () => {
 }; 
 
 export const MainAccount = () => {
-    const [accounts, setAccounts] = useState([]);
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [ accounts, setAccounts ] = useState([]);
+    const [ totalBalance, setTotalBalance ] = useState(0); 
+    const [ incomes, setIncomes ] = useState([]);
+    const [ totalIncome, setTotalIncome ] = useState(0);
+
+    const [ currentIndex, setCurrentIndex ] = useState(0);
 
     const getAccounts = async () => {
         const data = await listAccounts(); 
         setAccounts(data);
+        getCurrentBalance(data);
     };
 
+    const getCurrentBalance = (accounts) => {
+        const balance = accounts.map(account => parseFloat(account.currentBalance || 0)); 
+        const totalCurrentBalance = balance.reduce((a, b) => a + b, 0); 
+        setTotalBalance(totalCurrentBalance);
+    }
+
+    const getIncomes = async () => {
+        const data = await listIncomes(); 
+        setIncomes(data);
+        getTotalIncomes(data);
+    };
+
+    const getTotalIncomes = (incomes) => {
+        const incomeAmounts = incomes.map(income => parseFloat(income.incomeAmount || 0)); 
+        const totalIncome = incomeAmounts.reduce((a, b) => a + b, 0);
+        setTotalIncome(totalIncome);
+    };
+    
     const goPrev = () => {
         setCurrentIndex((prevIndex) =>
             prevIndex === 0 ? accounts.length - 1 : prevIndex - 1
@@ -81,12 +107,54 @@ export const MainAccount = () => {
 
     useEffect(() => {
         getAccounts();
+        getIncomes();
     }, []);
+    
 
     return (
         <main className="dashboard-main">
             <div className="container-main tools">
-                <h1>Hola</h1>
+                <div className="container-tools1">hola</div>
+                <div className="container-tools2">
+                    <div className="balance-description">
+                        <h2>Balance</h2>
+                        <div className='balance-description-detail'>
+                            <p>Details</p>
+                            <IoChevronForwardOutline/>
+                        </div>
+                    </div>
+                    <div className="balance total">
+                        <h4>Total</h4>
+                        <p>${totalBalance}</p>
+                        <div className="chart-container">
+                            <div className="bar" title="70%"></div>
+                            <div className="bar" title="50%"></div>
+                            <div className="bar" title="90%"></div>
+                            <div className="bar" title="60%"></div>
+                            <div className="bar" title="80%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div className="container-tools3">
+                    <IoArrowUpCircleOutline className="db-icon"/>
+                    <div className='total-container'>
+                        <div className="total">
+                            <h4>Incomes</h4>
+                            <p>${totalIncome}</p>
+                        </div>
+                        <div className="income grafic">
+                            <DoughnutGrafic 
+                                totalAmount={totalBalance} 
+                                calcPercentage={totalIncome}  
+                                labels={['Incomes', 'Balance']}
+                            />
+                        </div>
+                    </div>
+                    <div className='income data-container'>
+                        hola
+                    </div>
+                </div>
+                <div className="container-tools4">hola</div>
             </div>
             <div className="container-main cards">
                 <div className="your-cards">

@@ -264,6 +264,38 @@
     outline: none; 
 } 
 
+/*{ chart-container }*/
+.chart-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+.chart-container {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0; /* Evita que el gráfico se reduzca */
+}
+
+.labels-container {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.label-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.color-box {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+}
 /*{Home}*/
 .container-home {
     width: 100vw;
@@ -746,11 +778,125 @@
 /*{ dashboard account > main }*/
 .dashboard-main {
     width: 100vw;
-    height: auto;
+    height: calc(100vh - 76px );
     display: flex; 
     flex-direction: row;
 }
-.dashboard-main .container-main.tools { flex: 70%;}
+/* tools main */
+.container-main.tools {
+    flex: 70%; 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: repeat(2, 1fr); 
+    gap: 10px; 
+    width: 100%; 
+    height: 100%; 
+    padding: 10px; 
+}
+
+.container-tools1, .container-tools2, .container-tools3, .container-tools4 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    border: 1px solid #ceb8fa;
+    padding: 20px;
+}
+
+/*{ accounts main > balance }*/
+.container-tools2 {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; 
+}
+
+.balance-description,  .balance-description-detail { 
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.balance-description-detail {
+    cursor: pointer; 
+    color: #1f1f1f93; 
+}
+
+.balance-description {
+    width: 60%;
+    height: 40px;
+}
+
+.balance.total {
+    border: 1px solid rgba(31, 31, 31, 0.2); 
+    padding: 20px; 
+    width: 60%; 
+    height: 200px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.total h4, .total h4 { 
+    font-size: 1.5rem;
+    color: #5633d1; 
+    margin-bottom: 10px;
+}
+
+.total p { 
+    font-size: 2.5rem; 
+    font-weight: 600;
+}
+
+.chart-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 60%;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.container-tools3 {
+    flex-direction: column;
+    gap: 10px; 
+}
+/*{income - expense} */
+.container-main.tools .db-icon { 
+    cursor: pointer; 
+    align-self: flex-end;
+    font-size: 20px;
+    transform: rotate(45deg);
+}
+
+.total-container, .data-container { 
+    flex: 1; 
+    border: 1px solid  rgba(31, 31, 31, 0.2); 
+    width: 100%;
+    padding: 20px; 
+}
+.total-container { 
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.total {  flex: 30%; }
+.grafic { flex: 70%; }
+.bar {
+    width: 20px;
+    background: linear-gradient(to top, #a8a1c1, #b46bc1);
+    border-radius: 20px;
+    display: block;
+    transition: height 0.5s ease-in-out;
+}
+
+.bar:nth-child(1) { height: 30px; }
+.bar:nth-child(2) { height: 50px; }
+.bar:nth-child(3) { height: 90px; }
+.bar:nth-child(4) { height: 70px; }
+.bar:nth-child(5) { height: 20px; }
+
+/*{ your cards && }*/
 .container-main.cards { 
     border-left: 1px solid #ceb8fa;
     padding: 20px;
@@ -759,6 +905,7 @@
     position: relative; 
 }
 
+/*{ your cards }*/
 .all-cards {
     display: flex; 
     justify-content: space-between;

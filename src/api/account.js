@@ -60,7 +60,7 @@ export const updateAccount = async ( id, accountName, accountType, accountNumber
     const accessToken = getAccessToken(); 
 
     const response = await fetch(`http://127.0.0.1:8000/accounts/update/${id}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
