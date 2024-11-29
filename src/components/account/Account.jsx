@@ -138,7 +138,7 @@ export const MainAccount = () => {
                 <div className="container-tools3">
                     <IoArrowUpCircleOutline className="db-icon"/>
                     <div className='total-container'>
-                        <div className="total">
+                        <div className="total income">
                             <h4>Incomes</h4>
                             <p>${totalIncome}</p>
                         </div>

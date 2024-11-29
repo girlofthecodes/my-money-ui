@@ -17,7 +17,7 @@ export const DoughnutGrafic = ({ totalAmount, calcPercentage, labels }) => {
     const percentages = calculatePercentage(); 
 
     const chartData = {
-        labels: labels, 
+        labels: [], 
         datasets: [
             {
                 data: [calcPercentage, totalAmount - calcPercentage], 
@@ -33,19 +33,23 @@ export const DoughnutGrafic = ({ totalAmount, calcPercentage, labels }) => {
             <div className="chart-container">
                 <Doughnut data={chartData} width={200} height={200} />
             </div>
-
             <div className="labels-container">
-                {chartData.labels.map((label, index) => (
-                    <div key={index} className="label-item">
-                        <div
-                            className="color-box"
-                            style={{
-                                backgroundColor: chartData.datasets[0].backgroundColor[index],
-                            }}
-                        />
-                        <p>{percentages[index].toFixed(2)}%</p>
-                    </div>
-                ))}
+                {percentages.map((percentage, index) => {
+                    if (percentage > 0) { 
+                        return (
+                            <div key={index} className="label-item">
+                                <div
+                                    className="color-box"
+                                    style={{
+                                        backgroundColor: chartData.datasets[0].backgroundColor[index],
+                                    }}
+                                />
+                                <p>{labels[index]}: {percentage.toFixed(2)}%</p>
+                            </div>
+                        );
+                    }
+                    return null;                 
+                })}
             </div>
         </div>
     );

@@ -275,7 +275,7 @@
 .chart-container {
     width: 200px;
     height: 200px;
-    flex-shrink: 0; /* Evita que el gráfico se reduzca */
+    flex-shrink: 0; 
 }
 
 .labels-container {
@@ -880,7 +880,10 @@
     flex-direction: row;
     gap: 20px;
 }
-.total {  flex: 30%; }
+.total.income {  
+    flex: 30%;  
+    align-self: center;
+}
 .grafic { flex: 70%; }
 .bar {
     width: 20px;
