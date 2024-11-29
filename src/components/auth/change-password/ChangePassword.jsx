@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
-import { Button } from "../common/Button";
+import { Button } from "../../common/Button";
 import { Input } from "../../common/Input";
 import { PasswordToggle } from "../common/PasswordToggle";  
 import { PasswordValidation } from "../common/PasswordValidation";

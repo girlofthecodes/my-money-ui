@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 import { RiMastercardFill, RiVisaLine  } from "react-icons/ri";
 import { HiMiniWallet } from "react-icons/hi2";
@@ -8,7 +9,7 @@ import { BsFillPiggyBankFill } from "react-icons/bs";
 import { PiMoneyWavyFill } from "react-icons/pi";
 
 import { cardIdentifier } from "../../../validators/account/cardIdentifier";
-export const Card = ({ accountNumber, accountType }) => {
+export const Card = ({ className, accountNumber, accountType }) => {
     const formatCardNumber = (number) => {
         return number.replace(/(\d{4})(?=\d)/g, "$1 ")
     };
@@ -17,9 +18,9 @@ export const Card = ({ accountNumber, accountType }) => {
 
     const cardClass = () => {
         switch (accountType) {
-            case "Debito":
-                return "debito";
-            case "Credito":
+            case "Nómina":
+                return "nomina";
+            case "Crédito":
                 return "credito";
             case "Wallet":
                 return "wallet";
@@ -37,29 +38,28 @@ export const Card = ({ accountNumber, accountType }) => {
     };
 
     return (
-        <div className="card-container">
-            
-            <div className={`card ${cardClass()}`}>
+        <div>
+            <div className={`card ${cardClass()} ${className}`}>
                 <div className="type-card-opt">
-                    {accountType === "Debito" && cardIdentifierType == "Visa" && (
+                    {accountType === "Nómina" && cardIdentifierType == "Visa" && (
                         <div className="item-card">
                             <RiVisaLine className="db-icon"/>
                             <p className="type-card">{accountType}</p>
                         </div>
                     )}
-                    {accountType === "Debito" && cardIdentifierType == "MasterCard" && (
+                    {accountType === "Nómina" && cardIdentifierType == "MasterCard" && (
                         <div className="item-card">
                             <RiMastercardFill className="db-icon"/>
                             <p className="type-card">{accountType}</p>
                         </div>
                     )}
-                    {accountType === "Credito" && cardIdentifierType == "Visa" && (
+                    {accountType === "Crédito" && cardIdentifierType == "Visa" && (
                         <div className="item-card">
                             <RiVisaLine className="db-icon"/>
                             <p className="type-card">{accountType}</p>
                         </div>
                     )}
-                    {accountType === "Credito" && cardIdentifierType == "MasterCard" && (
+                    {accountType === "Crédito" && cardIdentifierType == "MasterCard" && (
                         <div className="item-card">
                             <RiMastercardFill className="db-icon"/>
                             <p className="type-card">{accountType}</p>
@@ -105,3 +105,8 @@ export const Card = ({ accountNumber, accountType }) => {
     );
 };
 
+Card.propTypes = {
+    className: PropTypes.string,
+    accountNumber: PropTypes.string,
+    accountType: PropTypes.string,
+};

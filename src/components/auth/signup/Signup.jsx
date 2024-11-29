@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { signup } from '../../../api/auth';
 import { Input } from '../../common/Input';
-import { Button } from '../common/Button';
+import { Button } from '../../common/Button';
 import { VideoComponent } from '../../common/Video'; 
 import { PasswordToggle } from '../common/PasswordToggle';
 import { PasswordValidation } from '../common/PasswordValidation';

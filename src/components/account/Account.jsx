@@ -1,9 +1,15 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 
 import { Card } from './common/Card';
+import { listAccounts } from '../../api/account';
+import { Button } from '../common/Button';
 
 import { IoSwapHorizontalOutline, IoAnalyticsSharp , IoMailUnread, IoWallet, IoApps, IoSettings, IoNotifications, IoPersonCircleSharp , IoChevronDownOutline } from "react-icons/io5";
 import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle  } from "react-icons/io";
+
+import { faPlus} from '@fortawesome/free-solid-svg-icons';
+
 const HeaderAccount = () => {
     return (
         <header className='dashboard'>
@@ -52,26 +58,70 @@ const HeaderAccount = () => {
     )
 }; 
 
-const MainAccount = () => {
-    return ( 
+export const MainAccount = () => {
+    const [accounts, setAccounts] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const getAccounts = async () => {
+        const data = await listAccounts(); 
+        setAccounts(data);
+    };
+
+    const goPrev = () => {
+        setCurrentIndex((prevIndex) =>
+            prevIndex === 0 ? accounts.length - 1 : prevIndex - 1
+        );
+    };
+
+    const goNext = () => {
+        setCurrentIndex((prevIndex) =>
+            prevIndex === accounts.length - 1 ? 0 : prevIndex + 1
+        );
+    };
+
+    useEffect(() => {
+        getAccounts();
+    }, []);
+
+    return (
         <main className="dashboard-main">
-            <div className="container-main tools">hola</div>
+            <div className="container-main tools">
+                <h1>Hola</h1>
+            </div>
             <div className="container-main cards">
                 <div className="all-cards">
                     <div className="count-cards">
                         <h2>Your cards</h2>
-                        <p className='total-card'>3</p>
+                        <p className="total-card">{accounts.length}</p>
                     </div>
-                    <div>
-                        <IoIosArrowDropleftCircle className="db-icon"/>
-                        <IoIosArrowDroprightCircle className="db-icon"/>
+                    <div className="navigation-btn">
+                        <IoIosArrowDropleftCircle className="db-icon" onClick={goPrev} />
+                        <IoIosArrowDroprightCircle className="db-icon" onClick={goNext} />
                     </div>
                 </div>
-                <Card accountNumber='5123456789045678' accountType="Vales"/>
+                <div className="card-container">
+                    {accounts.map((account, index) => (
+                        <div
+                            key={account.id}
+                            className={`card-wrapper ${index === currentIndex ? "visible" : "hidden"}`}
+                        >
+                            <Card
+                                accountNumber={account.accountNumber}
+                                accountType={account.accountType}
+                                className={index === currentIndex ? "visible-card" : "hidden-card"}
+                            />
+                        </div>
+                    ))}
+                </div>
+
+                <div className="new-card-btn">
+                    <Button className="new-card" label="Add New Card" path="/account/register"/>
+                </div>
             </div>
         </main>
-    )
-}; 
+    );
+};
+
 
 export const Account = () => {
     return (

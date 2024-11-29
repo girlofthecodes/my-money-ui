@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { faArrowLeft, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 import { PasswordToggle } from "../common/PasswordToggle";  
-import { Button } from '../common/Button';  
+import { Button } from '../../common/Button';  
 import { ResetPassword } from '../../../api/auth'; 
 import { validatePassword } from '../../../validators/authValidation'; 
 import { PasswordValidation} from "../common/PasswordValidation"; 

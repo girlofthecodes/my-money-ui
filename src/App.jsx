@@ -12,6 +12,8 @@ import { ChangePassword } from "./components/auth/change-password/ChangePassword
 import { ResetPassword } from "./components/auth/reset-password/ResetPassword";
 
 import { Account } from "./components/account/Account"; 
+import { RegisterAccount } from "./components/account/RegisterAccount";
+
 import './App.css';
 
 export const App = () => {
@@ -32,6 +34,10 @@ export const App = () => {
                 <Route 
                     path="/account" 
                     element={<ProtectedRoute element={<Account />} />} 
+                />
+                <Route 
+                    path="/account/register" 
+                    element={<ProtectedRoute element={<RegisterAccount />} />} 
                 />
             </Routes>
         </DarkModeProvider>

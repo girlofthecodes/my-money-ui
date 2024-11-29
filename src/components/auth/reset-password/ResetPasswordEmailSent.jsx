@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-import { Button } from "../../auth/common/Button"
+import { Button } from "../../common/Button"
 import { ResetPasswordEmail } from "../../../api/auth";
 
 export const ResetPasswordEmailSent = ({ email }) => {
