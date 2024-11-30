@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import PropTypes from "prop-types";
 
 import { RiMastercardFill, RiVisaLine  } from "react-icons/ri";
@@ -83,7 +82,6 @@ export const Card = ({ className, accountNumber, accountType }) => {
                             <p className="type-card">{accountType}</p>
                         </div>
                     )}
-
                     {accountType === "Vales" && (
                         <div className="item-card">
                             <FaCartShopping className="db-icon"/>

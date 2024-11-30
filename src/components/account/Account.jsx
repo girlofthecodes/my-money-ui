@@ -9,6 +9,7 @@ import { Button } from '../common/Button';
 import { DoughnutGrafic } from '../common/Doughnut';
 import { CircularChart } from '../common/CircularChart';
 import { BarPlot } from '../common/Bars';
+import { ItemNotification } from '../common/Notification';
 
 import { IoSwapHorizontalOutline, IoAnalyticsSharp , IoMailUnread, IoWallet, IoApps, 
     IoSettings, IoNotifications, IoPersonCircleSharp , IoChevronDownOutline, IoChevronForwardOutline, 
@@ -71,12 +72,19 @@ export const MainAccount = () => {
     const [ totalIncome, setTotalIncome ] = useState(0);
     const [ expenses, setExpenses] = useState([]);
     const [ totalExpense, setTotalExpense ] = useState(0);
-
     const [ currentIndex, setCurrentIndex ] = useState(0);
-
+    const [accountTypesMap, setAccountTypesMap] = useState({});
+    
+    //console.log(incomes)
+    //console.log(accounts)
     const getAccounts = async () => {
         const data = await listAccounts(); 
         setAccounts(data);
+        const accountMap = data.reduce((acc, account) => {
+            acc[account.accountName] = account.accountType;
+            return acc;
+        }, {});
+        setAccountTypesMap(accountMap);  
         getCurrentBalance(data);
     };
 
@@ -120,6 +128,16 @@ export const MainAccount = () => {
         setCurrentIndex((prevIndex) =>
             prevIndex === accounts.length - 1 ? 0 : prevIndex + 1
         );
+    };
+
+    const getAccountType = (accountName) => {
+        const accountMap = accounts.reduce((map, account) => {
+            map[account.accountName] = account.accountType;
+            //console.log(map)
+            return map;
+        }, {});
+    
+        return accountMap[accountName] || null; 
     };
 
     useEffect(() => {
@@ -168,7 +186,19 @@ export const MainAccount = () => {
                         </div>
                     </div>
                     <div className='income data-container'>
-                        hola
+                        {incomes.map((income, index) => {
+                            const accountName = income.account.account_name; 
+                            const accountType = getAccountType(accountName); 
+
+                            return (
+                                <ItemNotification
+                                    key={income.id} 
+                                    accountType={accountType} 
+                                    labelName={income.label.label_name}
+                                    description={income.incomeDescription}
+                                />
+                            );
+                        })}
                     </div>
                 </div>
                 <div className="container-tools4">
