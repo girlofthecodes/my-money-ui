@@ -29,9 +29,9 @@ export const DoughnutGrafic = ({ totalAmount, calcPercentage, labels }) => {
     };
 
     return (
-        <div className="chart-wrapper">
-            <div className="chart-container">
-                <Doughnut data={chartData} width={200} height={200} />
+        <div className="doughnut-wrapper">
+            <div className="doughnut-container">
+                <Doughnut data={chartData} width={160} height={100} />
             </div>
             <div className="labels-container">
                 {percentages.map((percentage, index) => {

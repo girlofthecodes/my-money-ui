@@ -17,36 +17,39 @@ export const CircularChart = ({ totalAmount, calcPercentage, labels }) => {
     const percentages = calculatePercentage(); 
 
     const chartData = {
-        labels: labels, 
+        labels: [], 
         datasets: [
             {
                 data: [calcPercentage, totalAmount - calcPercentage], 
-                backgroundColor: ['#36A2EB', '#FF6384'], 
+                backgroundColor: ['#0054ff', '#f5d867'], 
                 borderColor: '#fff',
                 borderWidth: 2, 
             },
         ],
     };
 
-
     return (
         <div className="chart-wrapper">
             <div className="chart-container">
-                <Pie data={chartData} width={200} height={200} />
+                <Pie data={chartData} width={160} height={100} />
             </div>
-
             <div className="labels-container">
-                {chartData.labels.map((label, index) => (
-                    <div key={index} className="label-item">
-                        <div
-                            className="color-box"
-                            style={{
-                                backgroundColor: chartData.datasets[0].backgroundColor[index],
-                            }}
-                        />
-                        <p>{percentages[index].toFixed(2)}%</p>
-                    </div>
-                ))}
+            {percentages.map((percentage, index) => {
+                    if (percentage > 0) { 
+                        return (
+                            <div key={index} className="label-item">
+                                <div
+                                    className="color-box"
+                                    style={{
+                                        backgroundColor: chartData.datasets[0].backgroundColor[index],
+                                    }}
+                                />
+                                <p>{labels[index]}: {percentage.toFixed(2)}%</p>
+                            </div>
+                        );
+                    }
+                    return null;                 
+                })}
             </div>
         </div>
     );

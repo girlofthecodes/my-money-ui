@@ -265,21 +265,19 @@
 } 
 
 /*{ chart-container }*/
-.chart-wrapper {
+.doughnut-wrapper, .chart-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 20px;
 }
 
-.chart-container {
-    width: 200px;
-    height: 200px;
+.doughnut-container, .chart-container {
     flex-shrink: 0; 
+    width: auto;
 }
 
 .labels-container {
-    margin-left: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -292,10 +290,19 @@
 }
 
 .color-box {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 10px;
+    border-radius: 50%;
     margin-right: 10px;
 }
+
+/*{ bars }*/
+.bar-plot-container {
+    width: 100%;  
+    height: 100px;  
+    position: relative;
+}
+
 /*{Home}*/
 .container-home {
     width: 100vw;
@@ -791,7 +798,7 @@
     gap: 10px; 
     width: 100%; 
     height: 100%; 
-    padding: 10px; 
+    padding: 10px;
 }
 
 .container-tools1, .container-tools2, .container-tools3, .container-tools4 {
@@ -848,16 +855,7 @@
     font-weight: 600;
 }
 
-.chart-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    height: 60%;
-    width: 60%;
-    margin: 0 auto;
-}
-
-.container-tools3 {
+.container-tools3, .container-tools4 {
     flex-direction: column;
     gap: 10px; 
 }
@@ -871,33 +869,24 @@
 
 .total-container, .data-container { 
     flex: 1; 
-    border: 1px solid  rgba(31, 31, 31, 0.2); 
     width: 100%;
-    padding: 20px; 
 }
+
+.data-container {
+    border: 1px solid  rgba(31, 31, 31, 0.2); 
+}
+
 .total-container { 
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
-.total.income {  
-    flex: 30%;  
+.total.income {
+    padding: 10px;
+    flex: 10%;  
     align-self: center;
 }
 .grafic { flex: 70%; }
-.bar {
-    width: 20px;
-    background: linear-gradient(to top, #a8a1c1, #b46bc1);
-    border-radius: 20px;
-    display: block;
-    transition: height 0.5s ease-in-out;
-}
-
-.bar:nth-child(1) { height: 30px; }
-.bar:nth-child(2) { height: 50px; }
-.bar:nth-child(3) { height: 90px; }
-.bar:nth-child(4) { height: 70px; }
-.bar:nth-child(5) { height: 20px; }
 
 /*{ your cards && }*/
 .container-main.cards { 

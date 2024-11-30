@@ -4,12 +4,15 @@ import { useState, useEffect } from 'react';
 import { Card } from './common/Card';
 import { listAccounts } from '../../api/account';
 import { listIncomes } from '../../api/incomes';
+import { listExpenses } from '../../api/expenses';
 import { Button } from '../common/Button';
 import { DoughnutGrafic } from '../common/Doughnut';
 import { CircularChart } from '../common/CircularChart';
+import { BarPlot } from '../common/Bars';
 
 import { IoSwapHorizontalOutline, IoAnalyticsSharp , IoMailUnread, IoWallet, IoApps, 
-    IoSettings, IoNotifications, IoPersonCircleSharp , IoChevronDownOutline, IoChevronForwardOutline, IoArrowUpCircleOutline  } from "react-icons/io5";
+    IoSettings, IoNotifications, IoPersonCircleSharp , IoChevronDownOutline, IoChevronForwardOutline, 
+    IoArrowUpCircleOutline  } from "react-icons/io5";
 import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from "react-icons/io";
 
 
@@ -66,6 +69,8 @@ export const MainAccount = () => {
     const [ totalBalance, setTotalBalance ] = useState(0); 
     const [ incomes, setIncomes ] = useState([]);
     const [ totalIncome, setTotalIncome ] = useState(0);
+    const [ expenses, setExpenses] = useState([]);
+    const [ totalExpense, setTotalExpense ] = useState(0);
 
     const [ currentIndex, setCurrentIndex ] = useState(0);
 
@@ -92,7 +97,19 @@ export const MainAccount = () => {
         const totalIncome = incomeAmounts.reduce((a, b) => a + b, 0);
         setTotalIncome(totalIncome);
     };
+
+    const getExpenses = async () => {
+        const data = await listExpenses(); 
+        setExpenses(data);
+        getTotalExpense(data);
+    }; 
     
+    const getTotalExpense = (expenses)=> {
+        const expenseAmounts = expenses.map(expense => parseFloat(expense.expenseAmount || 0));
+        const totalExpense = expenseAmounts.reduce((a, b) => a + b, 0);
+        setTotalExpense(totalExpense);
+    }; 
+
     const goPrev = () => {
         setCurrentIndex((prevIndex) =>
             prevIndex === 0 ? accounts.length - 1 : prevIndex - 1
@@ -108,6 +125,7 @@ export const MainAccount = () => {
     useEffect(() => {
         getAccounts();
         getIncomes();
+        getExpenses();
     }, []);
     
 
@@ -126,12 +144,11 @@ export const MainAccount = () => {
                     <div className="balance total">
                         <h4>Total</h4>
                         <p>${totalBalance}</p>
-                        <div className="chart-container">
-                            <div className="bar" title="70%"></div>
-                            <div className="bar" title="50%"></div>
-                            <div className="bar" title="90%"></div>
-                            <div className="bar" title="60%"></div>
-                            <div className="bar" title="80%"></div>
+                        <div className="bar grafic">
+                            <BarPlot
+                                totalAmount={totalBalance}
+                                accounts={accounts}
+                            />
                         </div>
                     </div>
                 </div>
@@ -154,7 +171,25 @@ export const MainAccount = () => {
                         hola
                     </div>
                 </div>
-                <div className="container-tools4">hola</div>
+                <div className="container-tools4">
+                    <IoArrowUpCircleOutline className="db-icon"/>
+                    <div className='total-container'>
+                        <div className="total income">
+                            <h4>Expenses</h4>
+                            <p>${totalExpense}</p>
+                        </div>
+                        <div className="income grafic">
+                            <CircularChart 
+                                totalAmount={totalBalance} 
+                                calcPercentage={totalExpense}   
+                                labels={['Expense', 'Balance']}
+                            />
+                        </div>
+                    </div>
+                    <div className='income data-container'>
+                        hola
+                    </div>
+                </div>
             </div>
             <div className="container-main cards">
                 <div className="your-cards">
