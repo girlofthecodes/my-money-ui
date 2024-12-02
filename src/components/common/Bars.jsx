@@ -15,7 +15,7 @@ export const BarPlot = ({ totalAmount, accounts }) => {
                 backgroundColor: '#5633d1',  
                 borderColor: 'transparent',
                 borderWidth: 1,
-                barThickness: 40,  
+                barThickness: 20,  
             },
         ],
     };

@@ -150,74 +150,94 @@ export const MainAccount = () => {
     return (
         <main className="dashboard-main">
             <div className="container-main tools">
-                <div className="container-tools1">hola</div>
-                <div className="container-tools2">
-                    <div className="balance-description">
-                        <h2>Balance</h2>
-                        <div className='balance-description-detail'>
-                            <p>Details</p>
-                            <IoChevronForwardOutline/>
+                <div className="container-main parts">
+                    <div className="container-tools tools1">hola</div>
+                    <div className="container-tools tools2">
+                        <div className="description balance">
+                            <h4>Balance</h4>
+                            <div className='description-detail'>
+                                <p>Details</p>
+                                <IoChevronForwardOutline/>
+                            </div>
                         </div>
-                    </div>
-                    <div className="balance total">
-                        <h4>Total</h4>
-                        <p>${totalBalance}</p>
-                        <div className="bar grafic">
-                            <BarPlot
-                                totalAmount={totalBalance}
-                                accounts={accounts}
-                            />
-                        </div>
-                    </div>
-                </div>
-                <div className="container-tools3">
-                    <IoArrowUpCircleOutline className="db-icon"/>
-                    <div className='total-container'>
-                        <div className="total income">
-                            <h4>Incomes</h4>
-                            <p>${totalIncome}</p>
-                        </div>
-                        <div className="income grafic">
-                            <DoughnutGrafic 
-                                totalAmount={totalBalance} 
-                                calcPercentage={totalIncome}  
-                                labels={['Incomes', 'Balance']}
-                            />
-                        </div>
-                    </div>
-                    <div className='income data-container'>
-                        {incomes.map((income, index) => {
-                            const accountName = income.account.account_name; 
-                            const accountType = getAccountType(accountName); 
-
-                            return (
-                                <ItemNotification
-                                    key={income.id} 
-                                    accountType={accountType} 
-                                    labelName={income.label.label_name}
-                                    description={income.incomeDescription}
+                        <div className="total balance">
+                            <h4>Total</h4>
+                            <p>${totalBalance}</p>
+                            <div className="bar grafic">
+                                <BarPlot
+                                    totalAmount={totalBalance}
+                                    accounts={accounts}
                                 />
-                            );
-                        })}
-                    </div>
-                </div>
-                <div className="container-tools4">
-                    <IoArrowUpCircleOutline className="db-icon"/>
-                    <div className='total-container'>
-                        <div className="total income">
-                            <h4>Expenses</h4>
-                            <p>${totalExpense}</p>
-                        </div>
-                        <div className="income grafic">
-                            <CircularChart 
-                                totalAmount={totalBalance} 
-                                calcPercentage={totalExpense}   
-                                labels={['Expense', 'Balance']}
-                            />
+                            </div>
                         </div>
                     </div>
-                    <div className='income data-container'>
-                        hola
+                    <div className="container-tools tools3">
+                        <IoArrowUpCircleOutline className="db-icon arrow"/>
+                        <div className='total-container'>
+                            <div className="total income">
+                                <h4>Incomes</h4>
+                                <p>${totalIncome}</p>
+                            </div>
+                            <div className="income grafic">
+                                <DoughnutGrafic 
+                                    totalAmount={totalBalance} 
+                                    calcPercentage={totalIncome}  
+                                    labels={['Incomes', 'Balance']}
+                                />
+                            </div>
+                        </div>
+                        <div className='income data-container'>
+                            <div className='description-detail'>
+                                <p>View All</p>
+                                <IoChevronForwardOutline className="db-icon"/>
+                            </div>
+                            {incomes.map((income, index) => {
+                                const accountName = income.account.account_name; 
+                                const accountType = getAccountType(accountName); 
+                                return (
+                                    <ItemNotification
+                                        key={income.id} 
+                                        accountType={accountType} 
+                                        labelName={income.label.label_name}
+                                        description={income.incomeDescription}
+                                    />
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <div className="container-tools tools4">
+                        <IoArrowUpCircleOutline className="db-icon arrow"/>
+                        <div className='total-container'>
+                            <div className="total expense">
+                                <h4>Expenses</h4>
+                                <p>${totalExpense}</p>
+                            </div>
+                            <div className="expense grafic">
+                                <CircularChart 
+                                    totalAmount={totalBalance} 
+                                    calcPercentage={totalExpense}   
+                                    labels={['Expense', 'Balance']}
+                                />
+                            </div>
+                        </div>
+                        <div className='expense data-container'>
+                            <div className='description-detail '>
+                                <p>View All</p>
+                                <IoChevronForwardOutline className="db-icon"/>
+                            </div>
+                            {expenses.map((expense, index) => {
+                                const accountName = expense.account.account_name; 
+                                const accountType = getAccountType(accountName); 
+                                return (
+                                    <ItemNotification
+                                        key={expense.id} 
+                                        accountType={accountType} 
+                                        labelName={expense.label.label_name}
+                                        description={expense.expenseDescription}
+                                    />
+                                );
+                            })}
+                        </div>
                     </div>
                 </div>
             </div>

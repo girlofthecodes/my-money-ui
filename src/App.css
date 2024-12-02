@@ -153,7 +153,6 @@
 }
 .img-company { 
     max-width: 35px; 
-
 }
 
 .item.img .company { 
@@ -188,9 +187,10 @@
     font-size: 12px;
 }
 
+
+/*!{ global component }*/
 /*{ Global Input && toggle password && Global Button && global Select }*/
 .global-label,  .password-toggle-label { font-weight: bold; }
-
 .global-input, .password-toggle-input, .global-button, .global-select-options {
     border: 1px solid #531e98ed;
     border-radius: 5px; 
@@ -201,8 +201,6 @@
 }
 
 .global-input:focus, .password-toggle-input:focus { outline: none; }
-
-/*{ Global Input }*/
 
 /*{ Toggle Password }*/
 .password-toggle-label .icon { margin-left: 10px; }
@@ -264,7 +262,7 @@
     outline: none; 
 } 
 
-/*{ chart-container }*/
+/*{grafic: doughnut - chart pie - bars }*/
 .doughnut-wrapper, .chart-wrapper {
     display: flex;
     align-items: center;
@@ -286,21 +284,88 @@
 .label-item {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    gap: 10px;
 }
 
 .color-box {
     width: 20px;
     height: 10px;
-    border-radius: 50%;
     margin-right: 10px;
 }
 
-/*{ bars }*/
 .bar-plot-container {
-    width: 100%;  
-    height: 100px;  
-    position: relative;
+    width: 200px;
+    height: auto;
+}
+
+/*{ notification }*/
+.notification {
+    background-color: rgba(225, 211, 238, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 30px 0;
+    border-radius: 8px;
+}
+
+.notification.nomina { box-shadow: 0 6px 12px #f2aa9c; }
+.notification.credito { box-shadow: 0 6px 12px #80dbb7; }
+.notification.ahorro { box-shadow: 0 6px 12px #a1baff; }
+.notification.departamental { box-shadow: 0 6px 12px #ffc785; }
+.notification.efectivo { box-shadow: 0 6px 12px #f7c1b2; }
+.notification.vales { box-shadow: 0 6px 12px #a0e4d1; }
+.notification.wallet { box-shadow: 0 6px 12px #ffdb99; }
+
+.notification.nomina  .type-account-nt { background-color: #f2aa9c; }
+.notification.credito .type-account-nt { background-color: #80dbb7; }
+.notification.ahorro .type-account-nt { background-color: #a1baff ; }
+.notification.departamental .type-account-nt { background-color: #ffc785; }
+.notification.efectivo .type-account-nt { background-color: #f7c1b2 ; }
+.notification.vales .type-account-nt { background-color: #a0e4d1  ; }
+.notification.wallet .type-account-nt { background-color: #ffdb99 ;}
+
+.notification .db-icon {
+    font-size: 1.3rem;
+    margin: 0; 
+}
+
+.account-nt, .exit-nt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 100%;
+}
+
+.type-account-nt, .close-nt {
+    width: 33px;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.type-account-nt { border-radius: 8px; }
+.close-nt { color: rgba(17, 17, 17, 0.401); }
+.close-nt:hover {
+    border-radius: 8px;
+    background-color: #e7e7ef;
+    color: #000; 
+}
+
+.data-nt {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.data-nt p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
 }
 
 /*{Home}*/
@@ -683,13 +748,13 @@
     color: #ffffff; 
 }
 
-.card.nomina { background-color: #ff6f61; }
-.card.credito { background-color: #f2a900; }
-.card.ahorro { background-color: #2d1a75 ; }
-.card.departamental { background-color: #9c27b0; }
-.card.efectivo { background-color: #24c175; }
-.card.vales { background-color: #ff4081; }
-.card.wallet { background-color: #ff9100;}
+.card.nomina { background-color: #f2aa9c; }
+.card.credito { background-color: #80dbb7; }
+.card.ahorro { background-color: #a1baff ; }
+.card.departamental { background-color: #ffc785; }
+.card.efectivo { background-color: #f7c1b2 ; }
+.card.vales { background-color: #a0e4d1  ; }
+.card.wallet { background-color: #ffdb99 ;}
 
 .item-card {
     display: fleX; 
@@ -704,12 +769,20 @@
     font-size: 1.5rem;
 }
 
+/*{ dashborad content }*/
+.dahsboard-content { 
+    overflow: hidden;
+    box-sizing: border-box;
+    max-width: 100%;
+    max-width: 100%;
+}
+
 /*{ dashboard account > header }*/
 .dashboard {
     background-image: linear-gradient(to right, #5633d1 , #ceb8fa);
     color: #ffffff;
     height: 76px;
-    width: 100vw;
+    width: 100%;
     padding: 0 40px; 
     display: flex; 
     flex-direction: row;
@@ -784,118 +857,111 @@
 
 /*{ dashboard account > main }*/
 .dashboard-main {
-    width: 100vw;
-    height: calc(100vh - 76px );
-    display: flex; 
-    flex-direction: row;
+    display: grid; 
+    grid-template-columns: 3fr 1fr;
+    gap: 10px; 
+    height: 100%;
 }
 /* tools main */
 .container-main.tools {
-    flex: 70%; 
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
-    grid-template-rows: repeat(2, 1fr); 
-    gap: 10px; 
-    width: 100%; 
-    height: 100%; 
-    padding: 10px;
-}
-
-.container-tools1, .container-tools2, .container-tools3, .container-tools4 {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    border: 1px solid #ceb8fa;
     padding: 20px;
-}
-
-/*{ accounts main > balance }*/
-.container-tools2 {
     display: flex; 
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; 
 }
 
-.balance-description,  .balance-description-detail { 
-    display: flex; 
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.balance-description-detail {
-    cursor: pointer; 
-    color: #1f1f1f93; 
-}
-
-.balance-description {
-    width: 60%;
-    height: 40px;
-}
-
-.balance.total {
-    border: 1px solid rgba(31, 31, 31, 0.2); 
+.container-main.cards {
     padding: 20px; 
-    width: 60%; 
-    height: 200px;
-    border-radius: 20px;
-    text-align: center;
+    border-left: 1px solid #ceb8fa;
+    width: 400px;
+    height: 100%; 
 }
 
-.total h4, .total h4 { 
-    font-size: 1.5rem;
+.container-main.parts {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: repeat(200px, auto); 
+    gap: 10px; 
+    height: 100%; 
+}
+
+.container-tools {
+    display: flex; 
+    flex-direction: column;
+    padding: 40px 20px; 
+    border: 1px solid #ceb8fa;
+}
+
+.total h4 { 
     color: #5633d1; 
-    margin-bottom: 10px;
+    font-size: 1.5rem;
 }
 
-.total p { 
-    font-size: 2.5rem; 
+.total p {
+    font-size: 2rem;
+    color: #1f1f1f; 
     font-weight: 600;
 }
 
-.container-tools3, .container-tools4 {
-    flex-direction: column;
-    gap: 10px; 
+.tools1, .tools2 {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
-/*{income - expense} */
-.container-main.tools .db-icon { 
-    cursor: pointer; 
+
+.description.balance, .description-detail {
+    display: flex; 
+}
+
+.description.balance {
+    width: 70%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.description.balance h4 {
+    font-size: 2rem;
+    color: #5633d1;
+}
+
+.description-detail {
+    color: #13131375; 
+}
+
+.total.balance {
+    width: 70%;
+    padding: 20px; 
+    text-align: center;
+    border: 1px solid rgba(31, 31, 31, 0.2); 
+    border-radius: 15px;
+}
+
+.bar.grafic {
+    margin-top: 20px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+.db-icon.arrow {
     align-self: flex-end;
+    margin-bottom: 10px;
     font-size: 20px;
+    cursor: pointer;
     transform: rotate(45deg);
 }
 
-.total-container, .data-container { 
-    flex: 1; 
-    width: 100%;
-}
-
-.data-container {
-    border: 1px solid  rgba(31, 31, 31, 0.2); 
-}
-
-.total-container { 
-    display: flex;
+.total-container {
+    display: flex; 
     flex-direction: row;
-    gap: 20px;
+    align-items: center;
+    justify-content: space-around;
 }
-.total.income {
-    padding: 10px;
-    flex: 10%;  
-    align-self: center;
-}
-.grafic { flex: 70%; }
 
-/*{ your cards && }*/
-.container-main.cards { 
-    border-left: 1px solid #ceb8fa;
-    padding: 20px;
-    width: 400px;
-    height: calc(100vh - 76px);
-    position: relative; 
+.data-container .description-detail {
+    justify-self: flex-end;
+    cursor: pointer; 
 }
+
 
 /*{ your cards }*/
 .all-cards {
@@ -979,7 +1045,8 @@
 }
 
 .list .register { flex: 1; }
-/*{ Dark Mode }*/ q
+
+/*!{ Dark Mode }*/ 
 body.dark-mode {
     background-color: #1f1f1f;
     color: #ffffff; 
