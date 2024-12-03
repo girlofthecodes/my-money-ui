@@ -910,6 +910,52 @@
     gap: 20px;
 }
 
+.tools1 {
+    background-image: url('/src/assets/manage-money-concept.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex; 
+    justify-content: flex-end;
+}
+
+.description.accounts {
+    backdrop-filter: blur(20px);
+    align-self: flex-end;
+    display: flex; 
+    flex-direction: column;
+    gap: 10px;
+    width: 60%; 
+    padding: 10px; 
+}
+
+.description.accounts .company { 
+    font-size: 14px;
+    width: 80px;
+}
+
+.description.accounts p:first-of-type {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.description.accounts .finances {
+    color: #5633d1; 
+    font-style: italic;
+}
+
+.description.accounts p:last-of-type {
+    color: #5633d1; 
+    font-weight: 600;
+}
+
+.description.accounts .learn-more {
+    width: 150px;
+    border: 0; 
+    color: #fff; 
+    background-color: #1f1f1f;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 .description.balance, .description-detail {
     display: flex; 
 }
@@ -926,6 +972,7 @@
 }
 
 .description-detail {
+    cursor: pointer; 
     color: #13131375; 
 }
 

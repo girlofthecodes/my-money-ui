@@ -161,7 +161,14 @@ export const MainAccount = () => {
         <main className="dashboard-main">
             <div className="container-main tools">
                 <div className="container-main parts">
-                    <div className="container-tools tools1">hola</div>
+                    <div className="container-tools tools1">
+                        <div className="description accounts">
+                            <h4 className="company">SaveSmart</h4>
+                            <p>Manage your <span className='finances'>finances</span> in a single app</p>
+                            <p>Track the monet you spend</p>
+                            <Button label="Learn more" className="learn-more"/>
+                        </div>
+                    </div>
                     <div className="container-tools tools2">
                         <div className="description balance">
                             <h4>Balance</h4>

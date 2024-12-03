@@ -12,10 +12,11 @@ export const BarPlot = ({ totalAmount, accounts }) => {
             {
                 label: [],
                 data: dataValues,  
-                backgroundColor: '#5633d1',  
+                backgroundColor: '#e2dbf1',  
                 borderColor: 'transparent',
                 borderWidth: 1,
-                barThickness: 20,  
+                barThickness: 30, 
+                borderRadius: 25,
             },
         ],
     };
