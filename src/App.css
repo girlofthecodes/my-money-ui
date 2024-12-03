@@ -183,6 +183,7 @@
     font-weight: bold;
     font-size: 1.1rem;
 }
+
 .user-info .email-data {
     font-size: 12px;
 }
@@ -203,7 +204,10 @@
 .global-input:focus, .password-toggle-input:focus { outline: none; }
 
 /*{ Toggle Password }*/
-.password-toggle-label .icon { margin-left: 10px; }
+.password-toggle-label .icon { 
+    margin-left: 10px; 
+    cursor: pointer; 
+}
 
 /*{ Global Button }*/
 .global-button { 
