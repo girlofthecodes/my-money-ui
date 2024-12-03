@@ -952,7 +952,7 @@
     font-weight: 600;
 }
 
-.description.accounts .learn-more {
+.description.accounts .learn-more, .views-all {
     width: 150px;
     border: 0; 
     color: #fff; 
@@ -979,6 +979,13 @@
     cursor: pointer; 
     color: #13131375; 
 }
+
+.container-view-all { 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
 
 .total.balance {
     width: 70%;
@@ -1008,6 +1015,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+}
+
+.data-container-child { 
+    height: 150px;
 }
 
 .data-container .description-detail {

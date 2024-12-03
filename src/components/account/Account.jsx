@@ -13,7 +13,7 @@ import { ItemNotification } from '../common/Notification';
 
 import { IoSwapHorizontalOutline, IoAnalyticsSharp , IoMailUnread, IoWallet, IoApps, 
     IoSettings, IoNotifications, IoPersonCircleSharp , IoChevronDownOutline, IoChevronForwardOutline, 
-    IoArrowUpCircleOutline , IoChevronBackOutline } from "react-icons/io5";
+    IoArrowUpCircleOutline , IoChevronBackOutline, IoEllipsisHorizontal  } from "react-icons/io5";
 import {IoIosArrowDroprightCircle } from "react-icons/io";
 
 
@@ -202,24 +202,25 @@ export const MainAccount = () => {
                             </div>
                         </div>
                         <div className='income data-container'>
-                            <div className='description-detail'>
-                                <p>View All</p>
-                                <IoChevronForwardOutline className="db-icon"/>
+                            <div className='data-container-child'>
+                                {incomes.map((income, index) => {
+                                    if(index < visibleNotification){
+                                        const accountName = income.account.account_name; 
+                                        const accountType = getAccountType(accountName); 
+                                        return (
+                                            <ItemNotification
+                                                key={income.id} 
+                                                accountType={accountType} 
+                                                labelName={income.label.label_name}
+                                                description={income.incomeDescription}
+                                            />
+                                        );
+                                    }
+                                })}
                             </div>
-                            {incomes.map((income, index) => {
-                                if(index < visibleNotification){
-                                    const accountName = income.account.account_name; 
-                                    const accountType = getAccountType(accountName); 
-                                    return (
-                                        <ItemNotification
-                                            key={income.id} 
-                                            accountType={accountType} 
-                                            labelName={income.label.label_name}
-                                            description={income.incomeDescription}
-                                        />
-                                    );
-                                }
-                            })}
+                            <div className="container-view-all">
+                                <Button className="views-all" label="View all"/>
+                            </div>
                         </div>
                     </div>
                     <div className="container-tools tools4">
@@ -238,24 +239,25 @@ export const MainAccount = () => {
                             </div>
                         </div>
                         <div className='expense data-container'>
-                            <div className='description-detail '>
-                                <p>View All</p>
-                                <IoChevronForwardOutline className="db-icon"/>
+                            <div className="data-container-child">
+                                {expenses.map((expense, index) => {
+                                    if(index < visibleNotification){
+                                        const accountName = expense.account.account_name; 
+                                        const accountType = getAccountType(accountName); 
+                                        return (
+                                            <ItemNotification
+                                                key={expense.id} 
+                                                accountType={accountType} 
+                                                labelName={expense.label.label_name}
+                                                description={expense.expenseDescription}
+                                            />
+                                        );
+                                    }
+                                })}
                             </div>
-                            {expenses.map((expense, index) => {
-                                if(index < visibleNotification){
-                                    const accountName = expense.account.account_name; 
-                                    const accountType = getAccountType(accountName); 
-                                    return (
-                                        <ItemNotification
-                                            key={expense.id} 
-                                            accountType={accountType} 
-                                            labelName={expense.label.label_name}
-                                            description={expense.expenseDescription}
-                                        />
-                                    );
-                                }
-                            })}
+                            <div className="container-view-all">
+                                <Button className="views-all" label="View all"/>
+                            </div>
                         </div>
                     </div>
                 </div>
