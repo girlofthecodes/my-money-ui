@@ -75,9 +75,8 @@ export const MainAccount = () => {
     const [ currentIndex, setCurrentIndex ] = useState(0);
     const [accountTypesMap, setAccountTypesMap] = useState({});
     
-    const visibleCards = 3; 
-    //console.log(incomes)
-    //console.log(accounts)
+    const visibleCard = 3; 
+    const visibleNotification = 2; 
     const getAccounts = async () => {
         const data = await listAccounts(); 
         setAccounts(data);
@@ -137,12 +136,11 @@ export const MainAccount = () => {
     };
 
     const getVisibleAccounts = () => {
-        if (!accounts || accounts.length === 0) return []; // Verificar que `accounts` no sea nulo o vacío
-
+        if (!accounts || accounts.length === 0) return []; 
         const visible = [];
-        for (let i = 0; i < visibleCards; i++) {
-            const index = (currentIndex + i) % accounts.length; // Cálculo cíclico
-            visible.unshift(accounts[index]); // Agregar al inicio para invertir
+        for (let i = 0; i < visibleCard; i++) {
+            const index = (currentIndex + i) % accounts.length; 
+            visible.unshift(accounts[index]); 
         }
         return visible;
     };
@@ -209,16 +207,18 @@ export const MainAccount = () => {
                                 <IoChevronForwardOutline className="db-icon"/>
                             </div>
                             {incomes.map((income, index) => {
-                                const accountName = income.account.account_name; 
-                                const accountType = getAccountType(accountName); 
-                                return (
-                                    <ItemNotification
-                                        key={income.id} 
-                                        accountType={accountType} 
-                                        labelName={income.label.label_name}
-                                        description={income.incomeDescription}
-                                    />
-                                );
+                                if(index < visibleNotification){
+                                    const accountName = income.account.account_name; 
+                                    const accountType = getAccountType(accountName); 
+                                    return (
+                                        <ItemNotification
+                                            key={income.id} 
+                                            accountType={accountType} 
+                                            labelName={income.label.label_name}
+                                            description={income.incomeDescription}
+                                        />
+                                    );
+                                }
                             })}
                         </div>
                     </div>
@@ -243,16 +243,18 @@ export const MainAccount = () => {
                                 <IoChevronForwardOutline className="db-icon"/>
                             </div>
                             {expenses.map((expense, index) => {
-                                const accountName = expense.account.account_name; 
-                                const accountType = getAccountType(accountName); 
-                                return (
-                                    <ItemNotification
-                                        key={expense.id} 
-                                        accountType={accountType} 
-                                        labelName={expense.label.label_name}
-                                        description={expense.expenseDescription}
-                                    />
-                                );
+                                if(index < visibleNotification){
+                                    const accountName = expense.account.account_name; 
+                                    const accountType = getAccountType(accountName); 
+                                    return (
+                                        <ItemNotification
+                                            key={expense.id} 
+                                            accountType={accountType} 
+                                            labelName={expense.label.label_name}
+                                            description={expense.expenseDescription}
+                                        />
+                                    );
+                                }
                             })}
                         </div>
                     </div>
