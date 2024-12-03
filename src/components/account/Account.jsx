@@ -271,13 +271,17 @@ export const MainAccount = () => {
                             const cardClass = classMap[position]; 
 
                             return (
-                                <div key={account.id} className={`card-wrapper ${cardClass}`}>
-                                    <Card
-                                        accountNumber={account.accountNumber}
-                                        accountType={account.accountType}
-                                        className={`card ${cardClass}`} 
-                                    />
-                                </div>
+                                <>
+                                    <div key={account.id} className={`card-wrapper ${cardClass}`}>
+                                        <Card
+                                            accountNumber={account.accountNumber}
+                                            accountType={account.accountType}
+                                            className={`card ${cardClass}`} 
+                                        />
+                                    </div>
+                                    <div className="transparent-card"></div>
+                                </>
+                                
                             );
                         })}
                     </div>
