@@ -13,8 +13,8 @@ import { ItemNotification } from '../common/Notification';
 
 import { IoSwapHorizontalOutline, IoAnalyticsSharp , IoMailUnread, IoWallet, IoApps, 
     IoSettings, IoNotifications, IoPersonCircleSharp , IoChevronDownOutline, IoChevronForwardOutline, 
-    IoArrowUpCircleOutline  } from "react-icons/io5";
-import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from "react-icons/io";
+    IoArrowUpCircleOutline , IoChevronBackOutline } from "react-icons/io5";
+import {IoIosArrowDroprightCircle } from "react-icons/io";
 
 
 const HeaderAccount = () => {
@@ -75,6 +75,7 @@ export const MainAccount = () => {
     const [ currentIndex, setCurrentIndex ] = useState(0);
     const [accountTypesMap, setAccountTypesMap] = useState({});
     
+    const visibleCards = 3; 
     //console.log(incomes)
     //console.log(accounts)
     const getAccounts = async () => {
@@ -119,26 +120,35 @@ export const MainAccount = () => {
     }; 
 
     const goPrev = () => {
-        setCurrentIndex((prevIndex) =>
-            prevIndex === 0 ? accounts.length - 1 : prevIndex - 1
-        );
+        setCurrentIndex((currentIndex + 1) % accounts.length);
     };
 
     const goNext = () => {
-        setCurrentIndex((prevIndex) =>
-            prevIndex === accounts.length - 1 ? 0 : prevIndex + 1
-        );
+        setCurrentIndex((currentIndex - 1 + accounts.length) % accounts.length);
     };
 
     const getAccountType = (accountName) => {
         const accountMap = accounts.reduce((map, account) => {
             map[account.accountName] = account.accountType;
-            //console.log(map)
             return map;
         }, {});
     
         return accountMap[accountName] || null; 
     };
+
+    const getVisibleAccounts = () => {
+        if (!accounts || accounts.length === 0) return []; // Verificar que `accounts` no sea nulo o vacío
+
+        const visible = [];
+        for (let i = 0; i < visibleCards; i++) {
+            const index = (currentIndex + i) % accounts.length; // Cálculo cíclico
+            visible.unshift(accounts[index]); // Agregar al inicio para invertir
+        }
+        return visible;
+    };
+
+    const visibleAccounts = getVisibleAccounts();
+
 
     useEffect(() => {
         getAccounts();
@@ -249,23 +259,27 @@ export const MainAccount = () => {
                             <p className="total-card">{accounts.length}</p>
                         </div>
                         <div className="navigation-btn">
-                            <IoIosArrowDropleftCircle className="db-icon" onClick={goPrev} />
-                            <IoIosArrowDroprightCircle className="db-icon" onClick={goNext} />
+                            <IoChevronBackOutline className="db-icon" onClick={goPrev} />
+                            <IoChevronForwardOutline className="db-icon" onClick={goNext} />
                         </div>
                     </div>
                     <div className="card-container">
-                        {accounts.map((account, index) => (
-                            <div
-                                key={account.id}
-                                className={`card-wrapper ${index === currentIndex ? "visible" : "hidden"}`}
-                            >
-                                <Card
-                                    accountNumber={account.accountNumber}
-                                    accountType={account.accountType}
-                                    className={index === currentIndex ? "visible-card" : "hidden-card"}
-                                />
-                            </div>
-                        ))}
+                        {visibleAccounts.map((account, position) => {
+                            if (!account) return null;
+
+                            const classMap = ["A", "B", "C"];
+                            const cardClass = classMap[position]; 
+
+                            return (
+                                <div key={account.id} className={`card-wrapper ${cardClass}`}>
+                                    <Card
+                                        accountNumber={account.accountNumber}
+                                        accountType={account.accountType}
+                                        className={`card ${cardClass}`} 
+                                    />
+                                </div>
+                            );
+                        })}
                     </div>
                     <div className="new-card-btn">
                         <Button className="new-card" label="Add New Card" path="/account/register"/>

@@ -737,7 +737,7 @@
 
 /*{ common > account }*/
 .card { 
-    width: 100%;
+    width: 320px;
     height: 200px;
     padding: 10px 50px; 
     margin: 30px 0; 
@@ -766,7 +766,8 @@
 .item-card .db-icon { font-size: 1.8rem; }
 .item-card .type-card { font-size: 1.2rem; }
 .number-card { 
-    font-size: 1.5rem;
+    text-align: center;
+    font-size: 1.3rem;
 }
 
 /*{ dashborad content }*/
@@ -870,10 +871,10 @@
 }
 
 .container-main.cards {
-    padding: 20px; 
-    border-left: 1px solid #ceb8fa;
-    width: 400px;
+    width: 100%;
     height: 100%; 
+    position: relative; 
+    padding: 20px 0 0;
 }
 
 .container-main.parts {
@@ -962,29 +963,53 @@
     cursor: pointer; 
 }
 
-
 /*{ your cards }*/
+.your-cards {
+    background-color: pink;
+    border-left: 1px solid #ceb8fa;
+    border-bottom: 1px solid #ceb8fa;
+    border-top: 1px solid #ceb8fa;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    overflow: hidden; 
+}
+
 .all-cards {
     display: flex; 
+    align-items: center;
     justify-content: space-between;
-    padding: 10px 20px; 
+    padding: 20px 30px; 
+}
+
+.all-cards .navigation-btn {
+    display: flex; 
+    flex-direction: row;
+    gap: 10px;
 }
 
 .navigation-btn .db-icon { 
-    cursor: pointer; 
-    font-size: 2rem;
-    color: #adacac; 
+    background-color: #eceef0;  
+    cursor: pointer;
+    font-size: 14px; 
+    color: #000;
+    width: auto; 
+    height: auto; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
 } 
 
 .all-cards .count-cards {
     display: flex; 
     flex-direction: row;
     align-items: center;
-    gap: 10px;
 }
 
 .all-cards .total-card { 
-    background-color: rgba(204, 189, 247, 0.5);
     color: #5633d1; 
     width: 30px;
     height: 30px;
@@ -996,35 +1021,39 @@
     font-weight: bold;
 }
 
+/* Contenedor principal del carrusel */
 .card-container {
-    position: relative;
-    height: 260px; 
-    width: 100%; 
-    overflow: hidden; 
+    width: 100%;
+    height: 600px;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    position: relative; 
 }
 
-.card-wrapper {
-    position: absolute;
-    left: 4%;
-    transition: transform 0.5s ease-in-out; 
+.card-wrapper.A { 
+    position: absolute; 
+    left: 20px;
 }
 
-.card-wrapper.visible .card {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+.card-wrapper.B { 
+    width: 350px;
+    transform: rotate(-20deg);
+    position: absolute; 
+    top: 60px;  
+    left: 0; 
+}
+.card-wrapper.C { 
+    position: absolute; 
+    top: 140px; 
+    right: 20px;
 }
 
-.card-wrapper.visible {
-    transform: translateY(0); 
-    z-index: 2;
-}
 
-.card-wrapper.hidden {
-    transform: translateY(-10%);
-    z-index: 1; 
-}
 
+/*{ new card  }*/
 .new-card-btn {
-    margin: 10px 0; 
+    margin: 10px; 
 }
 
 .new-card {
@@ -1032,8 +1061,6 @@
     color: #24c175; 
     font-weight: bold;
 }
-
-.your-cards { border-bottom: 1px solid #ceb8fa;}
 
 /*{ register {form > account ]}*/
 .register-container {
