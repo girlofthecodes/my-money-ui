@@ -12,6 +12,7 @@ import { ChangePassword } from "./components/auth/change-password/ChangePassword
 import { ResetPassword } from "./components/auth/reset-password/ResetPassword";
 
 import { Account } from "./components/account/Account"; 
+import { ListAccounts } from "./components/account/ListAccounts";
 import { RegisterAccount } from "./components/account/RegisterAccount";
 
 import './App.css';
@@ -36,7 +37,11 @@ export const App = () => {
                     element={<ProtectedRoute element={<Account />} />} 
                 />
                 <Route 
-                    path="/account/register" 
+                    path="/account/cards" 
+                    element={<ProtectedRoute element={<ListAccounts />} />} 
+                />
+                <Route 
+                    path="/account/cards/register" 
                     element={<ProtectedRoute element={<RegisterAccount />} />} 
                 />
             </Routes>

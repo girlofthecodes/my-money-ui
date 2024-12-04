@@ -739,6 +739,7 @@
     text-decoration: none;
 }
 
+/*! { account } */
 /*{ common > account }*/
 .card { 
     width: 320px;
@@ -761,7 +762,7 @@
 .card.wallet { background-color: #ffdb99 ;}
 
 .item-card {
-    display: fleX; 
+    display: flex; 
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -773,6 +774,79 @@
     text-align: center;
     font-size: 1.3rem;
 }
+
+/* { commont > CarddItem } */
+/* card */
+.account-item1 .container-card-item {
+    width: 200px;
+    height: 115px;
+    border-radius: 15px; 
+    padding: 10px 20px; 
+    margin: 0; 
+    position: absolute;
+    top: -50px;
+    left: 25px;  
+}
+
+.container-card-item .item-card {
+    justify-content: space-around;
+}
+.container-card-item .item-card .db-icon { font-size: 1.1rem; }
+.container-card-item .number-card, .container-card-item .type-card { font-size: 16px; }
+/* controls */
+.account-item2 {
+    height: 60%;
+    padding:  20px 10px; 
+    display: flex; 
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    top: 90px; 
+    left: 40px;
+}
+
+.card-item-label {
+    color: #1f1f1f85; 
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.card-item-total { font-weight: 600; font-size: 1rem; }
+.card-item-balance .card-item-label { font-size: 1.1rem; }
+.card-item-balance .card-item-total { font-size: 1.6rem; }
+.card-item-balance .card-item-total span { font-weight: 300; }
+.card-item-control {
+    display: flex; 
+    flex-direction: row;
+    gap: 10px;
+}
+
+.card-item-control div { 
+    flex: 1; 
+    text-align: center;
+}
+
+/* icon down */
+.account-item3 {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; 
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute; 
+    bottom: -15px;
+    left: 110px; 
+}
+
+.account-item3.nomina { background-color: #f2aa9c; }
+.account-item3.credito { background-color: #80dbb7; }
+.account-item3.ahorro { background-color: #a1baff ; }
+.account-item3.departamental { background-color: #ffc785; }
+.account-item3.efectivo { background-color: #f7c1b2 ; }
+.account-item3.vales { background-color: #a0e4d1  ; }
+.account-item3.wallet { background-color: #ffdb99 ; } 
 
 /*{ dashborad content }*/
 .dahsboard-content { 
@@ -1133,6 +1207,36 @@
     border: 0; 
     color: #24c175; 
     font-weight: bold;
+}
+
+/*{ list cad item }*/
+.account {
+    width: 100%;
+    height: 100%;
+    padding: 20px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    gap: 20px; 
+}
+
+.account-content1, .account-content2, .account-content3, .account-content4 {
+    flex: 1;     
+}
+
+.container-card-list {
+    display: flex; 
+    flex-direction: row;
+    gap: 30px; 
+}
+
+.card-list {
+    background-color: rgba(239, 244, 245, 0.463);
+    width: 250px;
+    height: 320px;
+    padding: 0 20px; 
+    position: relative; 
+    border-radius: 20px;
 }
 
 /*{ register {form > account ]}*/

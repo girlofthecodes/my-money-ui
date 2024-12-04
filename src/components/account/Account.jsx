@@ -65,7 +65,7 @@ const HeaderAccount = () => {
     )
 }; 
 
-export const MainAccount = () => {
+const MainAccount = () => {
     const [ accounts, setAccounts ] = useState([]);
     const [ totalBalance, setTotalBalance ] = useState(0); 
     const [ incomes, setIncomes ] = useState([]);
@@ -77,6 +77,7 @@ export const MainAccount = () => {
     
     const visibleCard = 3; 
     const visibleNotification = 2; 
+
     const getAccounts = async () => {
         const data = await listAccounts(); 
         setAccounts(data);
@@ -283,7 +284,10 @@ export const MainAccount = () => {
 
                             return (
                                 <>
-                                    <div key={account.id} className={`card-wrapper ${cardClass}`}>
+                                    <div 
+                                        key={account.id} 
+                                        className={`card-wrapper ${cardClass}`}
+                                    >
                                         <Card
                                             accountNumber={account.accountNumber}
                                             accountType={account.accountType}
@@ -297,7 +301,7 @@ export const MainAccount = () => {
                         })}
                     </div>
                     <div className="new-card-btn">
-                        <Button className="new-card" label="Add New Card" path="/account/register"/>
+                        <Button className="new-card" label="Add New Card" path="/account/cards/register"/>
                     </div>
                 </div>
                 <div>
