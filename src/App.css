@@ -791,18 +791,19 @@
 .container-card-item .item-card {
     justify-content: space-around;
 }
-.container-card-item .item-card .db-icon { font-size: 1.1rem; }
+.container-card-item .item-card .db-icon { font-size: 1.2rem; }
 .container-card-item .number-card, .container-card-item .type-card { font-size: 16px; }
 /* controls */
 .account-item2 {
     height: 60%;
+    width: 220px;
     padding:  20px 10px; 
     display: flex; 
     flex-direction: column;
     gap: 20px;
     position: absolute;
     top: 90px; 
-    left: 40px;
+    left: 15px;
 }
 
 .card-item-label {
@@ -812,20 +813,45 @@
 }
 
 .card-item-total { font-weight: 600; font-size: 1rem; }
-.card-item-balance .card-item-label { font-size: 1.1rem; }
+.card-item-balance .card-item-label { font-size: 1rem; }
 .card-item-balance .card-item-total { font-size: 1.6rem; }
 .card-item-balance .card-item-total span { font-weight: 300; }
 .card-item-control {
     display: flex; 
     flex-direction: row;
+    width: 100%;
     gap: 10px;
 }
 
-.card-item-control div { 
+.card-item-control .control { 
     flex: 1; 
     text-align: center;
 }
 
+.balance-bar-container {
+    width: 80px;  
+    height: 10px;  
+    background-color: #e0e0e0;  
+    border-radius: 10px;  
+    margin-top: 10px;
+}
+
+.balance-bar {
+    position: relative;
+    width: 100%;  
+    height: 100%;
+}
+.expense.bar {
+    height: 100%;
+    background-color: lightpink;
+    border-radius: 10px 0 0 10px;
+}
+
+.income.bar {
+    height: 100%;  
+    background-color: lightgreen;  
+    border-radius: 10px 0 0 10px;
+}
 /* icon down */
 .account-item3 {
     display: flex; 

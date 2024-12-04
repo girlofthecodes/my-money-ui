@@ -12,6 +12,8 @@ export const ListAccounts = () => {
     const [ accounts, setAccounts ] = useState([]); 
     const [ incomes, setIncomes ] = useState([]);
     const [ expenses, setExpenses ] = useState([]);
+    const [ incomeTotals, setIncomeTotals ] = useState([]);
+    const [ expenseTotals, setExpenseTotals ] = useState([]);
 
     const getAccounts = async() => {
         const data = await listAccounts(); 
@@ -29,8 +31,34 @@ export const ListAccounts = () => {
         setExpenses(data);
     }
 
-    // console.log(incomes)
-    // console.log(expenses)
+    useEffect(() => {
+        const calculateIncomeTotals = () => {
+            const totals = incomes.reduce((totals, income) => {
+                const accountId = income.account.id;
+                if (!totals[accountId]) totals[accountId] = 0;
+                totals[accountId] += parseFloat(income.incomeAmount);
+                return totals;
+            }, {});
+            setIncomeTotals(totals);
+        };
+    
+        calculateIncomeTotals();
+    }, [incomes]);
+
+    useEffect(() => {
+        const calculateExpenseTotals = () => {
+            const totals = expenses.reduce((totals, expense) => {
+                const accountId = expense.account.id;
+                if (!totals[accountId]) totals[accountId] = 0;
+                totals[accountId] += parseFloat(expense.expenseAmount);
+                return totals;
+            }, {});
+            setExpenseTotals(totals);
+        }; 
+
+        calculateExpenseTotals(); 
+    }, [expenses]);
+
     useEffect(() => {
         getAccounts();
         getIncomes();
@@ -42,20 +70,24 @@ export const ListAccounts = () => {
             <div className="account-content1"></div>
             <div className="account-content2"></div>
             <div className="account-content3"></div>
+            <div className="account-content4"></div>
             <div className="account-content4 container-card-list">
-                {accounts.map((account) => (
-                    <div className="card-list">
+                {accounts.map((account) => {
+                    const totalIncome = incomeTotals[account.id] || 0; 
+                    const totalExpense = expenseTotals[account.id] || 0; 
+                    return (
+                    <div className="card-list" key={account.id}>
                         <CardItem
-                            key={account.id} 
-                            className="container-card-item"
-                            accountNumber={account.accountNumber}
-                            accountType={account.accountType}
-                            currentBalance={account.currentBalance}
-                            totalIncome="3000"
-                            totalExpense="700"
+                        className="container-card-item"
+                        accountNumber={account.accountNumber}
+                        accountType={account.accountType}
+                        currentBalance={account.currentBalance}
+                        totalIncome={totalIncome.toFixed(2)}
+                        totalExpense={totalExpense.toFixed(2)}
                         />
                     </div>
-                ))}
+                    );
+                })}
             </div>
         </div>
     );
