@@ -8,11 +8,7 @@ import { BsFillPiggyBankFill } from "react-icons/bs";
 import { PiMoneyWavyFill } from "react-icons/pi";
 
 import { cardIdentifier } from "../../../validators/account/cardIdentifier";
-export const Card = ({ className, accountNumber, accountType }) => {
-    const formatCardNumber = (number) => {
-        return number.replace(/(\d{4})(?=\d)/g, "$1 ")
-    };
-
+export const Card = ({ className, accountNumberMasked, accountNumber, accountType }) => {
     const cardIdentifierType = cardIdentifier(accountNumber); 
 
     const cardClass = () => {
@@ -96,7 +92,11 @@ export const Card = ({ className, accountNumber, accountType }) => {
                     )}
                 </div>
                 <div className="number-card">
-                    <p>{formatCardNumber(accountNumber)}</p>
+                    {accountNumberMasked ? (
+                        <p>{accountNumberMasked}</p> 
+                    ) : (
+                        <p>No card number</p> 
+                    )}
                 </div>
             </div>
         </div>

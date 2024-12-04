@@ -148,6 +148,25 @@ const MainAccount = () => {
 
     const visibleAccounts = getVisibleAccounts();
 
+    const maskCardNumber = (cardNumber) => {
+        if (!cardNumber || cardNumber.length < 4) {
+            console.error("Número de tarjeta no válido");
+            return "";
+        }
+    
+        const visiblePart = cardNumber.slice(-4); 
+        const maskedPart = cardNumber
+            .slice(0, -4) // 
+            .replace(/\d/g, '*'); 
+    
+        
+        const formatted = (maskedPart + visiblePart)
+            .match(/.{1,4}/g) 
+            ?.join(' '); 
+    
+        return formatted || ""; 
+    };
+
 
     useEffect(() => {
         getAccounts();
@@ -288,6 +307,7 @@ const MainAccount = () => {
                                         className={`card-wrapper ${cardClass}`}
                                     >
                                         <Card
+                                            accountNumberMasked={maskCardNumber(account.accountNumber)}
                                             accountNumber={account.accountNumber}
                                             accountType={account.accountType}
                                             className={`card ${cardClass}`} 
