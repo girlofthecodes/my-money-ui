@@ -280,12 +280,11 @@ const MainAccount = () => {
                             if (!account) return null;
 
                             const classMap = ["A", "B", "C"];
-                            const cardClass = classMap[position]; 
+                            const cardClass = classMap[visibleAccounts.indexOf(account)]; 
 
                             return (
-                                <>
+                                <div key={account.id}>
                                     <div 
-                                        key={account.id} 
                                         className={`card-wrapper ${cardClass}`}
                                     >
                                         <Card
@@ -295,8 +294,7 @@ const MainAccount = () => {
                                         />
                                     </div>
                                     <div className="transparent-card"></div>
-                                </>
-                                
+                                </div>
                             );
                         })}
                     </div>

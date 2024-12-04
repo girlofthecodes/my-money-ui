@@ -18,9 +18,8 @@ export const ListAccounts = () => {
     const getAccounts = async() => {
         const data = await listAccounts(); 
         setAccounts(data);
-        console.log(data);
     }; 
-
+    console.log(accounts)
     const getIncomes = async() => {
         const data = await listIncomes();
         setIncomes(data);
@@ -67,27 +66,34 @@ export const ListAccounts = () => {
 
     return (
         <div className='account'>
-            <div className="account-content1"></div>
-            <div className="account-content2"></div>
-            <div className="account-content3"></div>
-            <div className="account-content4"></div>
-            <div className="account-content4 container-card-list">
-                {accounts.map((account) => {
-                    const totalIncome = incomeTotals[account.id] || 0; 
-                    const totalExpense = expenseTotals[account.id] || 0; 
-                    return (
-                    <div className="card-list" key={account.id}>
-                        <CardItem
-                        className="container-card-item"
-                        accountNumber={account.accountNumber}
-                        accountType={account.accountType}
-                        currentBalance={account.currentBalance}
-                        totalIncome={totalIncome.toFixed(2)}
-                        totalExpense={totalExpense.toFixed(2)}
-                        />
-                    </div>
-                    );
-                })}
+            <div className="account-content1">
+                
+            </div>
+            <div className="account-content2">
+
+            </div>
+            <div className="account-content3">
+                
+            </div>
+            <div className="account-content4">
+                <div className="container-card-list">
+                    {accounts.map((account) => {
+                        const totalIncome = incomeTotals[account.id] || 0; 
+                        const totalExpense = expenseTotals[account.id] || 0; 
+                        return (
+                        <div className="card-list" key={account.id}>
+                            <CardItem
+                                className="container-card-item"
+                                accountNumber={account.accountNumber}
+                                accountType={account.accountType}
+                                currentBalance={account.currentBalance}
+                                totalIncome={totalIncome.toFixed(2)}
+                                totalExpense={totalExpense.toFixed(2)}
+                            />
+                        </div>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );
