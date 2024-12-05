@@ -85,7 +85,7 @@ export const ListAccounts = () => {
             setSelectedExpenses(expenses.filter(expense => expense.account.id === accountID)); 
         }
     };
-    console.log(selectedIncomes);
+
     const formatCardNumber = (number) => {
         return number.replace(/(\d{4})(?=\d)/g, "$1 ")
     };
@@ -108,93 +108,101 @@ export const ListAccounts = () => {
                             const totalIncome = incomeTotals[account.id] || 0; 
                             const totalExpense = expenseTotals[account.id] || 0; 
                             return (
-                            <div className="card-list" key={account.id}>
-                                <CardItem
-                                    className="container-card-item"
-                                    accountNumber={account.accountNumber}
-                                    accountType={account.accountType}
-                                    currentBalance={account.currentBalance}
-                                    totalIncome={totalIncome.toFixed(2)}
-                                    totalExpense={totalExpense.toFixed(2)}
-                                    toggleViewCardID={toggleViewCardID}
-                                    accountID={account.id}
-                                    isActive={isCardID === account.id}
-                                />
-                            </div>
+                                <div className="card-list" key={account.id}>
+                                    <CardItem
+                                        className="container-card-item"
+                                        accountNumber={account.accountNumber}
+                                        accountType={account.accountType}
+                                        currentBalance={account.currentBalance}
+                                        totalIncome={totalIncome.toFixed(2)}
+                                        totalExpense={totalExpense.toFixed(2)}
+                                        toggleViewCardID={toggleViewCardID}
+                                        accountID={account.id}
+                                        isActive={isCardID === account.id}
+                                    />
+                                </div>
                             );
                         })}
                     </div>
                 </div>
             </div>
             {isCardID && selectedAccount && (
-                <div className={`account-id ${isCardID ? 'active' : ''}`}>
+                <div
+                    className={`account-id ${isCardID ? 'active' : ''} ${
+                    selectedIncomes.length === 0 && selectedExpenses.length === 0 ? 'empty' : 'with-data'
+                    }`}
+                >
                     <div className="account-data1">
                         <div className="delete-account">
                             <IoTrashOutline />
                         </div>
                         <div className="account-data-id">
-                            <div className='account-id-header'>
+                            <div className="account-id-header">
                                 <p>{selectedAccount.accountName}</p>
-                                <IoWifiOutline className='icon'/>
+                                <IoWifiOutline className="icon" />
                             </div>
-                            <div className='account-id-main'>
+                            <div className="account-id-main">
                                 <p>{formatCardNumber(selectedAccount.accountNumber)}</p>
                                 <p>{formatDate(selectedAccount.dueDate)}</p>
                             </div>
-                            <div className='account-id-footer'>
+                            <div className="account-id-footer">
                                 <p>${selectedAccount.currentBalance}</p>
                                 <p>{selectedAccount.accountType}</p>
                             </div>
                         </div>
                     </div>
                     <div className="account-data2">
-                        <div className="item income">
+                        <div>
                             {selectedIncomes.length === 0 ? (
-                                <p>Income not registered</p>
+                                <div className='empty-data'>
+                                    <p>Income not registered</p>
+                                </div>
                             ) : (
-                                <div>
-                                    <h5>Incomes:</h5>
-                                    <ul>
+                                <div className="container-account-concept-all">
+                                    <h5>Incomes</h5>
+                                    <div className='container-concept-id-all'>
                                         {selectedIncomes.map((income, index) => (
-                                            <div>
-                                                <div>
-                                                    <li>Label: {income.label.label_name}</li>
-                                                    <li>Amount: {income.incomeAmount}</li>
-                                                    <li>Description: {income.incomeDescription}</li>
-                                                    <li>Date: {income.incomeDate}</li>
+                                            <div key={index} className="container-concept-id">
+                                                <div className="description-concept-id">
+                                                    <p>Label: <span>{income.label.label_name}</span></p>
+                                                    <p>Amount: <span>{income.incomeAmount}</span></p>
+                                                    <p>Description: <span>{income.incomeDescription}</span></p>
+                                                    <p>Date: <span>{income.incomeDate}</span></p>
                                                 </div>
-                                                <div className='delete-account'>
-                                                    <IoTrashOutline/>
+                                                <div className="delete-account">
+                                                    <IoTrashOutline />
                                                 </div>
                                             </div>
                                         ))}
-                                    </ul>
+                                    </div>
                                 </div>
                             )}
                         </div>
                     </div>
                     <div className="account-data3">
-                        <div className="item income">
+                        <div>
                             {selectedExpenses.length === 0 ? (
-                                <p>Expense not registered</p>
+                                <div className='empty-data'>
+                                    <p>Expense not registered</p>
+                                </div>
                             ) : (
-                                <div>
-                                    <h5>Expenses:</h5>
-                                    <ul>
+                                <div className="container-account-concept-all">
+                                    <h5>Expenses</h5>
+                                    <div className="container-concept-id-all">
                                         {selectedExpenses.map((expense, index) => (
-                                            <div>
-                                                <div>
-                                                    <li>Label: {expense.label.label_name}</li>
-                                                    <li>Amount: {expense.expenseAmount}</li>
-                                                    <li>Description: {expense.expenseDescription}</li>
-                                                    <li>Date: {expense.expenseDate}</li>
+                                            <div key={index} className="container-concept-id">
+                                                <div className="description-concept-id">
+                                                    <p>Label: <span>{expense.label.label_name}</span></p>
+                                                    <p>Amount: <span>{expense.expenseAmount}</span></p>
+                                                    <p>Description: <span>{expense.expenseDescription}</span></p>
+                                                    <p>Date: <span>{expense.expenseDate}</span></p>
                                                 </div>
-                                                <div className='delete-account'>
-                                                    <IoTrashOutline/>
+                                                <div className="delete-account">
+                                                    <IoTrashOutline />
                                                 </div>
                                             </div>
                                         ))}
-                                    </ul>
+                                    </div>
                                 </div>
                             )}
                         </div>

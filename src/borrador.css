@@ -1,0 +1,167 @@
+
+/*{ list card item }*/
+.container-account {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.account {
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;  
+    transition: all 0.3s ease;
+}
+
+.container-account .account.active {
+    width: 75%;  
+}
+
+.container-account {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.account {
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;  
+    transition: all 0.3s ease;
+}
+
+.account.active {
+    width: 75%;  
+}
+
+.account-content1,
+.account-content2 {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.account-content1 { margin-bottom: 50px; }
+.account-content2 {
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+
+.container-card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    column-gap: 20px;
+    row-gap: 100px;
+    width: 100%;
+}
+
+.card-list {
+    background-color: rgba(239, 244, 245, 0.463);
+    width: 100%;
+    height: 320px;
+    padding: 20px;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+/* {account id } */
+.account-id {
+    width: 25%; 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space;
+    align-items: center;
+    gap: 50px;
+    background-color: #f5f5f5;  
+    transition: all 0.3s ease;
+}
+
+.account-data1, .account-data2, .account-data3 {
+    width: 100%;
+    height: calc(100%/3);
+    border-radius: 15px; 
+    padding: 20px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    display: flex; 
+    flex-direction: column;
+    gap: 20px; 
+}
+
+.account-data1 .delete-account {
+    align-self: flex-end;
+}
+
+.account-data1 .account-data-id { 
+    align-self: center;
+    padding: 20px;
+    border: 1px solid #fff;
+    width: 250px;
+    height: 160px;
+    border-radius: 15px;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.account-id-header {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2rem;
+}
+
+.account-id-header .icon { transform: rotate(90deg); font-size: 1.2rem;}
+.account-id-main p:first-of-type {
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.account-id-footer {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1rem;
+}
+
+.account-data1 { background-color: rgb(247, 182, 182);}
+.account-data2 { background-color: rgb(199, 255, 199); }
+.account-data3 { background-color: rgba(253, 37, 69, 0.6); }
+
+.container-account-concept-all {
+    padding: 20px; 
+}
+.container-account-concept-all h5 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.container-account-concept-all ul { 
+    list-style-type: none;
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
+}
+
+.container-concept-id {
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+    padding: 20px; 
+}
+
+.container-concept-id .delete-account {
+    align-self: center;
+}

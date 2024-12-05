@@ -1236,13 +1236,14 @@
     font-weight: bold;
 }
 
-/*{ list cad item }*/
+/* General styles for the account container */
 .container-account {
     display: flex;
     width: 100%;
     height: 100%;
 }
 
+/* Account section */
 .account {
     height: 100%;
     padding: 20px;
@@ -1253,29 +1254,12 @@
     transition: all 0.3s ease;
 }
 
+/* When account is active */
 .container-account .account.active {
     width: 75%;  
 }
 
-.container-account {
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
-
-.account {
-    height: 100%;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;  
-    transition: all 0.3s ease;
-}
-
-.account.active {
-    width: 75%;  
-}
+/* Content sections inside the account */
 .account-content1,
 .account-content2 {
     flex: 1;
@@ -1284,7 +1268,10 @@
     align-items: center;
 }
 
-.account-content1 { margin-bottom: 50px; }
+.account-content1 { 
+    margin-bottom: 50px; 
+}
+
 .account-content2 {
     flex-direction: column;
     gap: 20px;
@@ -1308,32 +1295,51 @@
     border-radius: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
-/* {account id } */
+
+/* Styles for account details (account-id) */
 .account-id {
-    width: 25%; 
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space;
     align-items: center;
-    gap: 20px;
+    gap: 50px;
     background-color: #f5f5f5;  
     transition: all 0.3s ease;
 }
 
-.account-data1, .account-data2, .account-data3 {
+/* Fixed width when no data (empty state) */
+.account-id.empty {
+    width: 25%; 
+}
+
+/* Expanded width when data exists */
+.account-id.with-data {
+    width:42%; 
+}
+
+/* Data sections inside account-id */
+.account-data1,
+.account-data2,
+.account-data3 {
     width: 100%;
-    height: calc(100%/3);
+    height: calc(100% / 3);
     border-radius: 15px; 
     padding: 20px; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     display: flex; 
     flex-direction: column;
-    gap: 20px; 
+    gap: 10px; 
+}
+
+.account-data2, .account-data3 {
+    justify-content: center;
+    align-items: center;
 }
 
 .account-data1 .delete-account {
     align-self: flex-end;
+    cursor: pointer;
 }
 
 .account-data1 .account-data-id { 
@@ -1346,6 +1352,7 @@
     display: flex; 
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.5);
 }
 
 .account-id-header {
@@ -1356,7 +1363,11 @@
     font-size: 1.2rem;
 }
 
-.account-id-header .icon { transform: rotate(90deg); font-size: 1.2rem;}
+.account-id-header .icon { 
+    transform: rotate(90deg); 
+    font-size: 1.2rem;
+}
+
 .account-id-main p:first-of-type {
     font-weight: 500;
     font-size: 1.3rem;
@@ -1371,9 +1382,83 @@
     font-size: 1rem;
 }
 
-.account-data1 { background-color: rgb(247, 182, 182);}
-.account-data2 { background-color: rgb(199, 255, 199); }
-.account-data3 { background-color: rgba(253, 37, 69, 0.6); }
+.empty-data {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* Expanded width when data exists id */
+.account-id.with-data .account-data1 { 
+    height: 20%;
+}
+
+.account-id.with-data .account-data1 .account-data-id {
+    width: 300px;
+}
+
+.account-id.with-data .account-data2, 
+.account-id.with-data .account-data3 { 
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-height: 150px;
+    height: auto;
+}
+
+/* Colors for data sections */
+.account-data1 { 
+    background-color: rgb(247, 182, 182);
+}
+
+.account-data2 { 
+    background-color: rgb(199, 255, 199); 
+}
+
+.account-data3 { 
+    background-color: rgba(253, 37, 69, 0.6); 
+}
+
+/* Styles for income/expense lists */
+.container-account-concept-all {
+    padding: 20px; 
+}
+
+.container-account-concept-all h5 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.container-concept-id-all {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; 
+}
+
+.container-concept-id {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px
+}
+
+.container-concept-id .delete-account {
+    cursor: pointer; 
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.description-concept-id {   
+    width: 180px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.description-concept-id span {
+    font-weight: 350;
+}
 
 /*{ register {form > account ]}*/
 .register-container {
