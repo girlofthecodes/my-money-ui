@@ -133,22 +133,32 @@ export const ListAccounts = () => {
                     }`}
                 >
                     <div className="account-data1">
-                        <div className="delete-account">
-                            <IoTrashOutline />
+                        <div className="container-card-id">
+                            <div className="delete-account">
+                                <IoTrashOutline />
+                            </div>
+                            <div className="account-data-id">
+                                <div className="account-id-header">
+                                    <p>{selectedAccount.accountName}</p>
+                                    <IoWifiOutline className="icon" />
+                                </div>
+                                <div className="account-id-main">
+                                    <p>{formatCardNumber(selectedAccount.accountNumber)}</p>
+                                    <p>{formatDate(selectedAccount.dueDate)}</p>
+                                </div>
+                                <div className="account-id-footer">
+                                    <p>${selectedAccount.currentBalance}</p>
+                                    <p>{selectedAccount.accountType}</p>
+                                </div>
+                            </div>
                         </div>
-                        <div className="account-data-id">
-                            <div className="account-id-header">
-                                <p>{selectedAccount.accountName}</p>
-                                <IoWifiOutline className="icon" />
-                            </div>
-                            <div className="account-id-main">
-                                <p>{formatCardNumber(selectedAccount.accountNumber)}</p>
-                                <p>{formatDate(selectedAccount.dueDate)}</p>
-                            </div>
-                            <div className="account-id-footer">
-                                <p>${selectedAccount.currentBalance}</p>
-                                <p>{selectedAccount.accountType}</p>
-                            </div>
+                        <div className={`container-info-id ${isCardID ? 'active' : ''} ${
+                            selectedIncomes.length === 0 && selectedExpenses.length === 0 ? 'empty' : 'with-data'
+                            }`}>
+                            <p>Hi!</p>
+                            <p>I have generated a breakdown of the transactions for the account you 
+                                selected to help you better manage your finances.</p>
+                            <span>Take a look!</span>
                         </div>
                     </div>
                     <div className="account-data2">
