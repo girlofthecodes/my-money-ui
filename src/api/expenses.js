@@ -74,7 +74,7 @@ export const updateExpense = async( account, label, expenseDescription, expenseD
     return await response.json();
 }; 
 
-export const deleteExpense = async(id) => {
+export const deleteIdExpense = async(id) => {
     const accessToken = getAccessToken();
 
     const response = await fetch(`http://127.0.0.1:8000/expenses/delete/${id}/`, {

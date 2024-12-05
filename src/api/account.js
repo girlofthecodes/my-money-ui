@@ -76,21 +76,21 @@ export const updateAccount = async ( id, accountName, accountType, accountNumber
     return await response.json();
 };
 
-export const deleteAccount = async (id) => {
+export const deleteIdAccount = async (id) => {
     const accessToken = getAccessToken();
 
-    const response = await fetch(`http://127.0.0.1:8000/accounts/delete/${id}`, {
-        method: 'DELETE',
+    const response = await fetch(`http://127.0.0.1:8000/accounts/delete/${id}/`, {
+        method: "DELETE",
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-        }
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${accessToken}`
+        },
     });
 
     if (!response.ok) {
         const errorData = await response.json();
         throw new Error(JSON.stringify(errorData));
     }
-    
+
     return await response.json();
 }; 

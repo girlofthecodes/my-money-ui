@@ -5,6 +5,12 @@ import { listAccounts } from '../../api/account';
 import { listIncomes } from '../../api/incomes';
 import { listExpenses } from '../../api/expenses';
 
+import { listIdAccount } from '../../api/account';
+
+import { deleteIdAccount } from '../../api/account'; 
+import { deleteIdIncome } from '../../api/incomes';
+import { deleteIdExpense } from '../../api/expenses'; 
+
 import { useUserData } from '../../hooks/useUserData'; 
 import { CardItem } from './common/CardItem';
 
@@ -28,15 +34,32 @@ export const ListAccounts = () => {
         setAccounts(data);
     }; 
 
+    const getAcccountID = async(accountId) => {
+        const data = await listIdAccount(accountId);
+        setSelectedAccount(data);
+    };  
+
+    const getDeleteIdAccount = (accountId) => {
+        return deleteIdAccount(accountId); 
+    }; 
+
     const getIncomes = async() => {
         const data = await listIncomes();
         setIncomes(data);
+    }
+
+    const getDeleteIdIncome = (incomeId) => {
+        return deleteIdIncome(incomeId); 
     }
 
     const getExpenses = async() => {
         const data = await listExpenses();
         setExpenses(data);
     }
+
+    const getDeleteIdExpense = (expenseId) => {
+        return deleteIdExpense(expenseId);
+    }; 
 
     useEffect(() => {
         const calculateIncomeTotals = () => {
@@ -72,7 +95,7 @@ export const ListAccounts = () => {
         getExpenses();  
     }, []);
 
-    const toggleViewCardID = (accountID) => {
+    const toggleViewCardID = async(accountID) => {
         if (isCardID === accountID) {
             setIsCardID(false); 
             setSelectedAccount(null); 
@@ -80,10 +103,52 @@ export const ListAccounts = () => {
             setSelectedExpenses([]); 
         } else {
             setIsCardID(accountID); 
-            setSelectedAccount(accounts.find(account => account.id === accountID)); 
+
+            await getAcccountID(accountID); 
             setSelectedIncomes(incomes.filter(income => income.account.id === accountID)); 
             setSelectedExpenses(expenses.filter(expense => expense.account.id === accountID)); 
         }
+    };
+
+    const handleDeleteIdAccount = async (accountId) => {
+        await getDeleteIdAccount(accountId);
+    
+        setAccounts((prevAccounts) => prevAccounts.filter((account) => account.id !== accountId));
+        setIncomes((prevIncomes) => prevIncomes.filter((income) => income.account.id !== accountId));
+        setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.account.id !== accountId));
+
+        setIncomeTotals((prevTotals) => {
+            const newTotals = { ...prevTotals };
+            delete newTotals[accountId];  
+            return newTotals;
+        });
+
+        setExpenseTotals((prevTotals) => {
+            const newTotals = { ...prevTotals };
+            delete newTotals[accountId];  
+            return newTotals;
+        });
+
+        if (isCardID === accountId) {
+            setIsCardID(false); 
+            setSelectedAccount(null);
+            setSelectedIncomes([]);
+            setSelectedExpenses([]);
+        }
+    };
+    
+
+    const handleDeleteIncome = async(incomeId) => {
+        await getDeleteIdIncome(incomeId); 
+        setSelectedIncomes((prevIncomes) => prevIncomes.filter(income => income.id !== incomeId));
+        setIncomes((prevIncomes) => prevIncomes.filter(income => income.id !== incomeId));
+        await getAccounts();
+    }; 
+
+    const handleDeleteExpense = async(expenseId) => {
+        await getDeleteIdExpense(expenseId);
+        setSelectedExpenses((prevExpenses) => prevExpenses.filter(expense => expense.id != expenseId));
+        setExpenses((prevExpenses) => prevExpenses.filter(expense => expense.id != expenseId)); 
     };
 
     const formatCardNumber = (number) => {
@@ -129,18 +194,18 @@ export const ListAccounts = () => {
             {isCardID && selectedAccount && (
                 <div
                     className={`account-id ${isCardID ? 'active' : ''} ${
-                    selectedIncomes.length === 0 && selectedExpenses.length === 0 ? 'empty' : 'with-data'
+                    selectedIncomes.length > 0 || selectedExpenses.length > 0 ? 'with-data' : 'empty'
                     }`}
                 >
                     <div className="account-data1">
                         <div className="container-card-id">
                             <div className="delete-account">
-                                <IoTrashOutline />
+                                <IoTrashOutline  onClick={() => handleDeleteIdAccount(selectedAccount.id)}/>
                             </div>
                             <div className="account-data-id">
                                 <div className="account-id-header">
                                     <p>{selectedAccount.accountName}</p>
-                                    <IoWifiOutline className="icon" />
+                                    <IoWifiOutline className="icon"/>
                                 </div>
                                 <div className="account-id-main">
                                     <p>{formatCardNumber(selectedAccount.accountNumber)}</p>
@@ -153,7 +218,7 @@ export const ListAccounts = () => {
                             </div>
                         </div>
                         <div className={`container-info-id ${isCardID ? 'active' : ''} ${
-                            selectedIncomes.length === 0 && selectedExpenses.length === 0 ? 'empty' : 'with-data'
+                            selectedIncomes.length > 0 || selectedExpenses.length > 0 ? 'with-data' : 'empty'
                             }`}>
                             <p>Hi!</p>
                             <p>I have generated a breakdown of the transactions for the account you 
@@ -180,7 +245,7 @@ export const ListAccounts = () => {
                                                     <p>Date: <span>{income.incomeDate}</span></p>
                                                 </div>
                                                 <div className="delete-account">
-                                                    <IoTrashOutline />
+                                                    <IoTrashOutline onClick={() => handleDeleteIncome(income.id)}/>
                                                 </div>
                                             </div>
                                         ))}
@@ -208,7 +273,7 @@ export const ListAccounts = () => {
                                                     <p>Date: <span>{expense.expenseDate}</span></p>
                                                 </div>
                                                 <div className="delete-account">
-                                                    <IoTrashOutline />
+                                                    <IoTrashOutline onClick={() => handleDeleteExpense(expense.id)}/>
                                                 </div>
                                             </div>
                                         ))}

@@ -75,10 +75,10 @@ export const updateIncome = async(id, account, label, incomeDate, incomeAmount, 
     return await response.json();
 };
 
-export const deleteIncome = async(id) => {
+export const deleteIdIncome = async(id) => {
     const accessToken = getAccessToken(); 
 
-    const response = await fetch(`http://127.0.0.1:8000/incomes/${id}/`, {
+    const response = await fetch(`http://127.0.0.1:8000/incomes/delete/${id}/`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
