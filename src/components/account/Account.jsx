@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Card } from './common/Card';
 import { listAccounts } from '../../api/account';
@@ -10,60 +11,9 @@ import { DoughnutGrafic } from '../common/Doughnut';
 import { CircularChart } from '../common/CircularChart';
 import { BarPlot } from '../common/Bars';
 import { ItemNotification } from '../common/Notification';
+import { HeaderGlobal } from '../navbar/HeaderGlobal'
 
-import { IoSwapHorizontalOutline, IoAnalyticsSharp , IoMailUnread, IoWallet, IoApps, 
-    IoSettings, IoNotifications, IoPersonCircleSharp , IoChevronDownOutline, IoChevronForwardOutline, 
-    IoArrowUpCircleOutline , IoChevronBackOutline, IoEllipsisHorizontal  } from "react-icons/io5";
-import {IoIosArrowDroprightCircle } from "react-icons/io";
-
-
-const HeaderAccount = () => {
-    return (
-        <header className='dashboard'>
-            <div className="enterprise">
-                <h2 className="company">SaveSmart</h2>
-            </div>
-            <nav className="dashboard-menu">
-                <ul className="dashboard-menu-items">
-                    <li className="items">
-                        <IoApps className='db-icon'/>
-                        <span>Dashboard</span>
-                    </li>
-                    <li className="items">
-                        <IoAnalyticsSharp  className='db-icon'/>
-                        <span>Static</span>
-                    </li>
-                    <li className="items">
-                        <IoWallet  className='db-icon'/>
-                        <span>My Wallet</span>
-                    </li>
-                    <li className="items">
-                        <IoSwapHorizontalOutline className='db-icon'/>
-                        <span>Transfers</span>
-                    </li>
-                    <li className="items">
-                        <IoMailUnread  className='db-icon'/>
-                        <span>Messages</span>
-                    </li>
-                </ul>
-            </nav>
-            <div className="tools-user">
-                <ul className="dashboard-menu-items">
-                    <li className="items">
-                        <IoSettings className='db-icon'/>
-                    </li>
-                    <li className="items">
-                        <IoNotifications className='db-icon'/>
-                    </li>
-                </ul>
-                <div className="dashboard-user">
-                    <IoPersonCircleSharp className='db-icon user'/>
-                    <IoChevronDownOutline className='db-icon'/>
-                </div>
-            </div>
-        </header>
-    )
-}; 
+import { IoChevronForwardOutline, IoArrowUpCircleOutline , IoChevronBackOutline  } from "react-icons/io5";
 
 const MainAccount = () => {
     const [ accounts, setAccounts ] = useState([]);
@@ -334,7 +284,7 @@ const MainAccount = () => {
 export const Account = () => {
     return (
         <div className="dashboard-content">
-            <HeaderAccount />
+            <HeaderGlobal />
             <MainAccount />
         </div>
     )

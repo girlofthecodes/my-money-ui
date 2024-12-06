@@ -13,10 +13,12 @@ import { deleteIdExpense } from '../../api/expenses';
 
 import { useUserData } from '../../hooks/useUserData'; 
 import { CardItem } from './common/CardItem';
+import { HeaderGlobal } from '../navbar/HeaderGlobal'
 
 import { IoTrashOutline, IoWifiOutline } from "react-icons/io5";
 
-export const ListAccounts = () => {
+
+const ListAccount = () => {
     const [ accounts, setAccounts ] = useState([]); 
     const [ incomes, setIncomes ] = useState([]);
     const [ expenses, setExpenses ] = useState([]);
@@ -166,6 +168,7 @@ export const ListAccounts = () => {
             <div className={`account ${isCardID ? 'active' : ''}`}>
                 <div className="account-content1">
                     <h4>Hi! {userData.username}</h4>
+                    <p>SaveSmart wishes you a good and productive day. Below, you can see the breakdown of your registered accounts. </p>
                 </div>
                 <div className="account-content2">
                     <div className="container-card-list">
@@ -288,3 +291,13 @@ export const ListAccounts = () => {
     );
     
 }; 
+
+
+export const ListAccounts = () => {
+    return (
+        <div>
+            <HeaderGlobal />
+            <ListAccount />
+        </div>
+    )
+};

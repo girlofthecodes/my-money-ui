@@ -309,7 +309,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    margin: 30px 0;
     border-radius: 8px;
 }
 
@@ -787,7 +786,7 @@
     top: -50px;
     left: 40px;  
 }
-
+.account.active .account-item1 .container-card-item { left: 30px;}
 .container-card-item .item-card {
     justify-content: space-around;
 }
@@ -803,7 +802,10 @@
     gap: 20px;
     position: absolute;
     top: 90px; 
-    left: 15px;
+    left: 28px;
+}
+.account.active .account-item2 {
+    left: 20px; 
 }
 
 .card-item-label {
@@ -825,7 +827,10 @@
 
 .card-item-control .control { 
     flex: 1; 
-    text-align: center;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .balance-bar-container {
@@ -866,6 +871,7 @@
     left: 120px; 
 }
 
+.account.active .account-item3 { left: 112px}
 .account-item3.nomina { background-color: #f2aa9c; }
 .account-item3.credito { background-color: #80dbb7; }
 .account-item3.ahorro { background-color: #a1baff ; }
@@ -1056,7 +1062,7 @@
     width: 150px;
     border: 0; 
     color: #fff; 
-    background-color: #1f1f1f;
+    background-color: #343434;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -1118,7 +1124,10 @@
 }
 
 .data-container-child { 
-    height: 150px;
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; 
+    margin-bottom: 20px; 
 }
 
 .data-container .description-detail {
@@ -1234,6 +1243,8 @@
     border: 0; 
     color: #24c175; 
     font-weight: bold;
+    background-color: #1f1f1f;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 /* General styles for the account container */
@@ -1270,6 +1281,16 @@
 
 .account-content1 { 
     margin-bottom: 50px; 
+    display: flex; 
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px; 
+
+}
+
+.account-content1 h4 {
+    font-size: 1.5rem;
+    font-style: italic;
 }
 
 .account-content2 {
@@ -1457,7 +1478,7 @@
 
 /* Colors for data sections */
 .account-data1 { 
-    background-color: rgb(247, 182, 182);
+    background-color: rgba(255, 253, 164, 0.7);
 }
 
 .account-data2 { 
