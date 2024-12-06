@@ -1494,7 +1494,7 @@
     padding: 20px; 
 }
 
-.container-account-concept-all h5 {
+.account-data2 h5, .account-data3 h5 {
     font-size: 1.3rem;
     margin-bottom: 15px;
 }

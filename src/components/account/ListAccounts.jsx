@@ -13,7 +13,8 @@ import { deleteIdExpense } from '../../api/expenses';
 
 import { useUserData } from '../../hooks/useUserData'; 
 import { CardItem } from './common/CardItem';
-import { HeaderGlobal } from '../navbar/HeaderGlobal'
+import { HeaderGlobal } from '../navbar/HeaderGlobal'; 
+import { TransactionList } from '../common/TransactionList'; 
 
 import { IoTrashOutline, IoWifiOutline } from "react-icons/io5";
 
@@ -231,58 +232,28 @@ const ListAccount = () => {
                     </div>
                     <div className="account-data2">
                         <div>
-                            {selectedIncomes.length === 0 ? (
-                                <div className='empty-data'>
-                                    <p>Income not registered</p>
-                                </div>
-                            ) : (
-                                <div className="container-account-concept-all">
-                                    <h5>Incomes</h5>
-                                    <div className='container-concept-id-all'>
-                                        {selectedIncomes.map((income, index) => (
-                                            <div key={index} className="container-concept-id">
-                                                <div className="description-concept-id">
-                                                    <p>Label: <span>{income.label.label_name}</span></p>
-                                                    <p>Amount: <span>{income.incomeAmount}</span></p>
-                                                    <p>Description: <span>{income.incomeDescription}</span></p>
-                                                    <p>Date: <span>{income.incomeDate}</span></p>
-                                                </div>
-                                                <div className="delete-account">
-                                                    <IoTrashOutline onClick={() => handleDeleteIncome(income.id)}/>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
+                            <h5>Incomes</h5>
+                            <TransactionList
+                                transactions={selectedIncomes}
+                                handleDelete={handleDeleteIncome}
+                                type="Income"
+                                amountKey="incomeAmount"
+                                descriptionKey="incomeDescription"
+                                dateKey="incomeDate"
+                            />
                         </div>
                     </div>
                     <div className="account-data3">
                         <div>
-                            {selectedExpenses.length === 0 ? (
-                                <div className='empty-data'>
-                                    <p>Expense not registered</p>
-                                </div>
-                            ) : (
-                                <div className="container-account-concept-all">
-                                    <h5>Expenses</h5>
-                                    <div className="container-concept-id-all">
-                                        {selectedExpenses.map((expense, index) => (
-                                            <div key={index} className="container-concept-id">
-                                                <div className="description-concept-id">
-                                                    <p>Label: <span>{expense.label.label_name}</span></p>
-                                                    <p>Amount: <span>{expense.expenseAmount}</span></p>
-                                                    <p>Description: <span>{expense.expenseDescription}</span></p>
-                                                    <p>Date: <span>{expense.expenseDate}</span></p>
-                                                </div>
-                                                <div className="delete-account">
-                                                    <IoTrashOutline onClick={() => handleDeleteExpense(expense.id)}/>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
+                            <h5>Expenses</h5>
+                            <TransactionList
+                                transactions={selectedExpenses}
+                                handleDelete={handleDeleteExpense}
+                                type="Expense"
+                                amountKey="expenseAmount"
+                                descriptionKey="expenseDescription"
+                                dateKey="expenseDate"
+                            />
                         </div>
                     </div>
                 </div>
@@ -291,7 +262,6 @@ const ListAccount = () => {
     );
     
 }; 
-
 
 export const ListAccounts = () => {
     return (
