@@ -7,7 +7,7 @@
 .navbar, .submenu {
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
-    background-color: #ffffff;
+    background-image: linear-gradient(to bottom, #5633d1 , #ceb8fa);
     display: flex; 
     flex-direction: column;
     gap: 10px; 
@@ -83,6 +83,7 @@
 /*{ Menu expanded }*/
 /* Searh */
 .navbar.expanded .item.search {
+    margin-bottom: 10px; 
     position: relative; 
 }
 
@@ -143,7 +144,7 @@
 }
 
 .img-container { 
-    background-color: #000000;
+    background-color: #fff;
     width: 50px;
     height: 50px;
     display: flex; 
@@ -286,9 +287,8 @@
 }
 
 .label-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .color-box {
@@ -1556,30 +1556,17 @@ body.dark-mode .navbar, body.dark-mode .submenu {
     color: #ffffff;
 }
 
-body.dark-mode .global-button.navbar-icon {
-    color: #ffffff; 
-}
-
-body.dark-mode .submenu.expanded .container-submenu .item.toggle .navbar-icon:hover, 
-body.dark-mode .container-submenu .item.toggle .navbar-icon.toggle:hover {
-    color: #ffffff; 
-}
-/*icons-only*/
-body.dark-mode .global-button.navbar-icon .icon {
-    color: #ffffff; 
-}
-
 /* {more tools} */
 body.dark-mode .img-container {
-    background-color: #ffffff;
+    background-color: transparent; 
 }
 
-body.dark-mode .search-input { 
-    background-color: #3f3f3f;
+body.dark-mode .label-item { 
+    color: #1f1f1f; 
 }
 
 body.dark-mode .search-input::placeholder {
-    color: #ffffffb1; 
+    color: #1f1f1f; 
 }
 
 /* dark mode change password */
@@ -1597,8 +1584,11 @@ body.dark-mode .global-button.change-password-btn {
 }
 
 /*{ more tools }*/
-body.dark-mode .global-input, body.dark-mode .password-toggle-input, body.dark-mode .global-button { border: 1px solid #ff5f81; }
-
+body.dark-mode .global-input, 
+body.dark-mode .password-toggle-input, 
+body.dark-mode .global-button { 
+    border: 1px solid #ff5f81; 
+}
 
 /*{ Signuo, login }*/
 body.dark-mode .auth-img { background-color: #ffffff; }
@@ -1623,16 +1613,44 @@ body.dark-mode .reset-password {
 }
 
 /* {nabvar} */
-body.dark-mode .navbar .navbar-icon, body.dark-mode .submenu .navbar-icon { border: 0; }
-body.dark-mode .navbar .navbar-icon:hover, body.dark-mode .submenu .navbar-icon:hover {
-    background-color: #ff5f81;
-}
-body.dark-mode .navbar .navbar-icon.menu:hover, body.dark-mode .submenu .navbar-icon.menu:hover { background-color: transparent; }
-body.dark-mode .navbar.icons-only, body.dark-mode .submenu.icons-only {
-    border-right: 1px solid #ff5f81;
-    border-top: 1px solid #ff5f81;
+body.dark-mode .navbar, 
+body.dark-mode .submenu {
+    background-image: linear-gradient(to bottom, #ff5f81 , #f3b3c1);
 }
 
+body.dark-mode .navbar .navbar-icon, 
+body.dark-mode .submenu .navbar-icon { 
+    border: 0; 
+    color: #1f1f1f;
+}
+
+body.dark-mode .navbar .navbar-icon .icon, 
+body.dark-mode .submenu .navbar-icon .icon, 
+body.dark-mode .user-info {
+    color: #1f1f1f;
+}
+
+body.dark-mode .navbar .navbar-icon:hover, 
+body.dark-mode .submenu .navbar-icon:hover {
+    background-color: #f3b3c1;
+}
+
+body.dark-mode .navbar .navbar-icon.menu:hover, 
+body.dark-mode .submenu .navbar-icon.menu:hover { 
+    background-color: transparent; 
+}
+
+body.dark-mode .navbar.icons-only, 
+body.dark-mode .submenu.icons-only {
+    box-shadow: rgba(255, 255, 255, 0.383) 0px 5px 15px;
+    border-right: 1px solid #ccc;
+}
+
+body.dark-mode .navbar.expanded, 
+body.dark-mode .submenu.expanded {
+    box-shadow: rgba(255, 255, 255, 0.383) 0px 5px 15px;
+    border-right: 1px solid #ccc;
+}
 
 /*{ dashboard account > header #9899e5 }*/
 body.dark-mode .dashboard {
@@ -1647,6 +1665,62 @@ body.dark-mode .dashboard .tools-user .items:hover {
     background-color: transparent; 
 }
 
+/* {Heder Gobal } */
+body.dark-mode .dashboard {
+    background-image: linear-gradient(to right, #ff5f81 , #f3b3c1);
+    color: #1f1f1f;
+}
+
+/*{ accounts }*/
+body.dark-mode .container-tools {
+    border: 1px solid #ff5f81;
+}
+
+body.dark-mode .your-cards {
+    border-left: 1px solid #ff5f81;
+    border-bottom: 1px solid #ff5f81;
+    border-top: 1px solid #ff5f81;
+}
+
+body.dark-mode .total-card {
+    color: #ff5f81; 
+}
+
+body.dark-mode .notification, 
+body.dark-mode .views-all { 
+    background-color: rgb(255, 255, 255);
+}
+
+body.dark-mode .new-card, 
+body.dark-mode .views-all, 
+body.dark-mode .card-list {
+    background-color: #fff;
+    border: 0; 
+    box-shadow: rgba(255, 255, 255, 0.383) 0px 5px 15px;
+}
+
+body.dark-mode .description-detail, 
+body.dark-mode .total.balance p, body.dark-mode .total.balance h4, 
+body.dark-mode .description.balance h4, 
+body.dark-mode .total.expense h4, body.dark-mode .total.income h4, 
+body.dark-mode .total.expense p, body.dark-mode .total.income p {
+    color: #fff; 
+}
+
+body.dark-mode .views-all, 
+body.dark-mode .notification .db-icon, 
+body.dark-mode .notification .data-nt, 
+body.dark-mode .container-card-item, 
+body.dark-mode .account-id, 
+body.dark-mode .company {
+    color: #000;
+}
+
+body.dark-mode .container-tools.tools1, 
+body.dark-mode .card-list { 
+    background-color: #fff;
+    color: #000;
+}
 /* Media query para pantallas más pequeñas */
 @media (max-width: 768px) {
     .global-button.social-media-btn {

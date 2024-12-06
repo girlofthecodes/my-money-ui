@@ -254,7 +254,7 @@ export const Menu = () => {
                 {showSubmenuUser && (
                     <div className={`submenu ${isIconsOnly ? 'icons-only' : 'expanded'}`}>
                         <li className="item data">
-                            <img src={isDarkMode ? "/src/assets/user-white.png":"/src/assets/user-black.png"} alt="img-user" className="img-user"/>
+                            <img src={"/src/assets/user-black.png"} alt="img-user" className="img-user"/>
                             {!isIconsOnly && (
                                 <div className="user-info">
                                     <span className="username-data">{userData.username}</span>

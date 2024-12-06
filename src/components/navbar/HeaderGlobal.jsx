@@ -18,11 +18,11 @@ export const HeaderGlobal = () => {
             </div>
             <nav className="dashboard-menu">
                 <ul className="dashboard-menu-items">
-                    <li className="items" onClick={() => handleNavigate('/account')}>
+                    <li className="items" onClick={() => handleNavigate('/')}>
                         <IoApps className='db-icon'/>
                         <span>Dashboard</span>
                     </li>
-                    <li className="items">
+                    <li className="items" onClick={() => handleNavigate('/account')}>
                         <IoAnalyticsSharp  className='db-icon'/>
                         <span>Static</span>
                     </li>
