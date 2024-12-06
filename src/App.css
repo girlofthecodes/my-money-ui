@@ -289,12 +289,13 @@
 .label-item {
     font-size: 14px;
     font-weight: 700;
+    display: flex; 
+    gap: 10px; 
 }
 
 .color-box {
     width: 20px;
     height: 10px;
-    margin-right: 10px;
 }
 
 .bar-plot-container {
@@ -1453,10 +1454,14 @@
     justify-content: space-between;
     font-size: 1rem;
 }
-
-.empty-data {
-    font-size: 1.2rem;
+.account-id.active.empty  .container-concept-id-all {
+    display: block; 
+}
+.account-id.active.empty .empty-data p, 
+.account-id.active.with-data .empty-data p {
+    font-size: 1.1rem;
     font-weight: 500;
+    width: 100%;
 }
 
 /* Expanded width when data exists id */
@@ -1515,12 +1520,16 @@
     gap: 10px; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
+.container-icon {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
 
 .container-concept-id .delete-account {
     cursor: pointer; 
-    height: 100%;
-    display: flex;
-    align-items: center;
 }
 
 .description-concept-id {   

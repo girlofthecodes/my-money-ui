@@ -224,10 +224,10 @@ const ListAccount = () => {
                         <div className={`container-info-id ${isCardID ? 'active' : ''} ${
                             selectedIncomes.length > 0 || selectedExpenses.length > 0 ? 'with-data' : 'empty'
                             }`}>
-                            <p>Hi!</p>
-                            <p>I have generated a breakdown of the transactions for the account you 
-                                selected to help you better manage your finances.</p>
-                            <span>Take a look!</span>
+                                <p>Hi!</p>
+                                <p>I have generated a breakdown of the transactions for the account you 
+                                    selected to help you better manage your finances.</p>
+                                <span>Take a look!</span>
                         </div>
                     </div>
                     <div className="account-data2">
