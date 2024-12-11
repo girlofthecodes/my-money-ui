@@ -1,6 +1,6 @@
 import { getAccessToken } from "./token";
 
-export const registerAccount = async ( accountName, accountType, accountNumber, currentBalance ) => {
+export const registerAccount = async ( accountName, accountType, accountNumber, currentBalance, dueDate ) => {
     const accessToken = getAccessToken(); 
 
     const response = await fetch('http://127.0.0.1:8000/accounts/register/', {
@@ -9,7 +9,7 @@ export const registerAccount = async ( accountName, accountType, accountNumber, 
             'Content-Type': 'application/json', 
             'Authorization': `Bearer ${accessToken}`
         }, 
-        body: JSON.stringify({ accountName, accountType, accountNumber, currentBalance }) 
+        body: JSON.stringify({ accountName, accountType, accountNumber, currentBalance, dueDate }) 
     }); 
 
     if(!response.ok){

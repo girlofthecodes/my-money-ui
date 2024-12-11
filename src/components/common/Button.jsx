@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const Button = ({ 
+    type, 
     path, 
     icon, 
     label, 
@@ -22,6 +23,7 @@ export const Button = ({
 
     return (
         <button 
+            type={type}
             onClick={handleNavigation} 
             className={`global-button ${className}`}>
                 { icon && <FontAwesomeIcon icon={icon} className='icon'/> }
@@ -37,4 +39,5 @@ Button.propTypes = {
     label: PropTypes.string,
     className: PropTypes.string,
     onClick: PropTypes.func,
+    type: PropTypes.string,
 };
