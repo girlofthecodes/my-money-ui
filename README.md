@@ -36,6 +36,8 @@ A continuación se mostrara un avance de lo que es el sitio web:
 
   /account/cards/register
   ![image](https://github.com/user-attachments/assets/42abdf28-13cf-4f2f-89fe-896658170991)
+  ![image](https://github.com/user-attachments/assets/8e7b0db9-e2a8-4efb-a126-0dd4f105cf5b)
+
 
 
 
